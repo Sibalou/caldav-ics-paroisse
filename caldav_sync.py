@@ -1,0 +1,112 @@
+"""
+caldav_sync.py — Récupère N calendriers CalDAV, merge, filtre #interne, écrit calendrier.ics
+Conçu pour tourner dans GitHub Actions → le .ics est commité dans le repo (servi via GitHub Pages)
+"""
+
+import os
+import sys
+import logging
+from datetime import datetime, timezone
+
+import caldav
+from icalendar import Calendar
+from dotenv import load_dotenv
+
+load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)],
+)
+log = logging.getLogger(__name__)
+
+CALDAV_URL      = os.environ["CALDAV_URL"]
+CALDAV_USER     = os.environ["CALDAV_USER"]
+CALDAV_PASSWORD = os.environ["CALDAV_PASSWORD"]
+
+CALDAV_CALENDARS = [
+    c.strip()
+    for c in os.getenv("CALDAV_CALENDARS", "").split(",")
+    if c.strip()
+]
+
+FILTER_KEYWORD  = os.getenv("FILTER_KEYWORD", "#interne")
+OUTPUT_FILENAME = os.getenv("OUTPUT_FILENAME", "calendrier.ics")
+
+def connect_caldav() -> caldav.DAVClient:
+    log.info("Connexion CalDAV : %s", CALDAV_URL)
+    return caldav.DAVClient(url=CALDAV_URL, username=CALDAV_USER, password=CALDAV_PASSWORD)
+
+def get_calendars(client: caldav.DAVClient) -> list:
+    principal = client.principal()
+    all_cals = principal.calendars()
+    log.info("Calendriers disponibles : %s", [c.name for c in all_cals])
+    if not CALDAV_CALENDARS:
+        log.info("Aucun filtre → inclusion de tous (%d)", len(all_cals))
+        return all_cals
+    selected = [c for c in all_cals if c.name in CALDAV_CALENDARS]
+    missing = set(CALDAV_CALENDARS) - {c.name for c in selected}
+    if missing:
+        log.warning("Calendriers introuvables : %s", missing)
+    return selected
+
+def fetch_events(calendars: list) -> list:
+    all_events = []
+    for cal in calendars:
+        try:
+            events = cal.events()
+            log.info("  %s : %d événements récupérés", cal.name, len(events))
+            all_events.extend(events)
+        except Exception as exc:
+            log.error("Erreur lecture '%s' : %s", cal.name, exc)
+    return all_events
+
+def is_internal(component) -> bool:
+    description = component.get("DESCRIPTION", "")
+    return FILTER_KEYWORD.lower() in str(description).lower() if description else False
+
+def build_ics(caldav_events: list) -> bytes:
+    merged = Calendar()
+    merged.add("PRODID", "-//Paroisse CalDAV Sync//FR")
+    merged.add("VERSION", "2.0")
+    merged.add("CALSCALE", "GREGORIAN")
+    merged.add("METHOD", "PUBLISH")
+    merged.add("X-WR-CALNAME", os.getenv("CALENDAR_NAME", "Agenda Paroisse"))
+    merged.add("X-WR-TIMEZONE", "Europe/Paris")
+    kept = filtered = 0
+    for dav_event in caldav_events:
+        try:
+            cal_obj = Calendar.from_ical(dav_event.data)
+            for component in cal_obj.walk():
+                if component.name == "VEVENT":
+                    if is_internal(component):
+                        filtered += 1
+                    else:
+                        merged.add_component(component)
+                        kept += 1
+        except Exception as exc:
+            log.error("Erreur parsing événement : %s", exc)
+    log.info("Conservés : %d | Filtrés (%s) : %d", kept, FILTER_KEYWORD, filtered)
+    return merged.to_ical()
+
+def main():
+    log.info("=== Démarrage sync CalDAV → ICS [%s] ===", datetime.now(timezone.utc).isoformat())
+    try:
+        client    = connect_caldav()
+        calendars = get_calendars(client)
+        if not calendars:
+            log.error("Aucun calendrier trouvé, arrêt.")
+            sys.exit(1)
+        events    = fetch_events(calendars)
+        ics_bytes = build_ics(events)
+        with open(OUTPUT_FILENAME, "wb") as f:
+            f.write(ics_bytes)
+        log.info("Fichier écrit : %s", OUTPUT_FILENAME)
+        log.info("=== Sync terminée avec succès ===")
+    except Exception as exc:
+        log.exception("Erreur fatale : %s", exc)
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

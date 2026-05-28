@@ -1,0 +1,44 @@
+name: Sync CalDAV → ICS
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run sync
+        env:
+          CALDAV_URL:       ${{ secrets.CALDAV_URL }}
+          CALDAV_USER:      ${{ secrets.CALDAV_USER }}
+          CALDAV_PASSWORD:  ${{ secrets.CALDAV_PASSWORD }}
+          CALDAV_CALENDARS: ${{ secrets.CALDAV_CALENDARS }}
+          FILTER_KEYWORD:   "#interne"
+          OUTPUT_FILENAME:  "calendrier.ics"
+          CALENDAR_NAME:    ${{ secrets.CALENDAR_NAME }}
+        run: python caldav_sync.py
+
+      - name: Commit & push ICS
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add calendrier.ics
+          git diff --cached --quiet || git commit -m "chore: sync CalDAV [$(date -u '+%Y-%m-%d %H:%M')] UTC"
+          git push
