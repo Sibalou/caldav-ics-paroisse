@@ -63,6 +63,60 @@ gh secret list --repo Sibalou/caldav-ics-paroisse
 gh api repos/Sibalou/caldav-ics-paroisse/git/trees/gh-pages --jq '.tree[].path'
 ```
 
+## Domaine personnalisé (calendrier.saintemariedespeuples.org)
+
+### Étape 1 — IONOS : supprimer la redirection existante
+
+1. IONOS → **Domaines & SSL** → `saintemariedespeuples.org`
+2. Onglet **Sous-domaines** → repérer `calendrier`
+3. **Supprimer** l'entrée de redirection entièrement (pas juste la vider)
+
+### Étape 2 — IONOS : créer le CNAME
+
+Toujours dans **Sous-domaines** → **Ajouter un sous-domaine** :
+
+| Champ | Valeur |
+| --- | --- |
+| Sous-domaine | `calendrier` |
+| Type | `CNAME` |
+| Cible | `sibalou.github.io` |
+| TTL | `300` |
+
+> La cible est `sibalou.github.io` sans chemin. GitHub résout vers le bon repo via le fichier `CNAME`.
+
+### Étape 3 — Vérifier la propagation DNS
+
+```powershell
+# Doit retourner sibalou.github.io
+Resolve-DnsName -Name calendrier.saintemariedespeuples.org -Type CNAME
+```
+
+**Attendre que le DNS soit propagé avant l'étape suivante** (risque de domain takeover sinon).
+
+### Étape 4 — GitHub Pages : configurer le domaine personnalisé
+
+1. GitHub → repo `caldav-ics-paroisse` → **Settings** → **Pages**
+2. Champ **Custom domain** → `calendrier.saintemariedespeuples.org` → **Save**
+3. Attendre le statut vert (vérification DNS GitHub, ~1-5 min)
+4. Cocher **Enforce HTTPS** une fois le cert Let's Encrypt provisionné (~5-15 min)
+
+### Étape 5 — Vérification complète
+
+```powershell
+# DNS
+Resolve-DnsName -Name calendrier.saintemariedespeuples.org -Type CNAME
+
+# TLS + Content-Type
+$r = Invoke-WebRequest `
+  -Uri "https://calendrier.saintemariedespeuples.org/calendrier.ics" `
+  -Method Head
+$r.StatusCode                  # 200
+$r.Headers['Content-Type']     # text/calendar
+
+# Validation
+if ($r.Headers['Content-Type'] -like "*text/calendar*") { "OK" } else { "ERREUR Content-Type" }
+```
+
 ## Modifier la fréquence
 
 Dans `.github/workflows/sync.yml` :

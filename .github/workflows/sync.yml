@@ -65,6 +65,7 @@ jobs:
             echo '<title>Redirection...</title>'
             echo '</head><body></body></html>'
           } > index.html
-          git add calendrier.ics .nojekyll index.html
+          echo 'calendrier.saintemariedespeuples.org' > CNAME
+          git add calendrier.ics .nojekyll index.html CNAME
           git diff --cached --quiet || git commit -m "chore: sync CalDAV [$(date -u '+%Y-%m-%d %H:%M')] UTC"
           git push origin gh-pages

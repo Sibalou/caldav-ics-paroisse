@@ -4,13 +4,13 @@ Synchronisation automatique CalDAV → fichier `.ics` public via GitHub Actions 
 
 Regénéré toutes les 4 heures. URL publique stable :
 
-```
-https://sibalou.github.io/caldav-ics-paroisse/calendrier.ics
+```text
+https://calendrier.saintemariedespeuples.org/calendrier.ics
 ```
 
 ## Architecture
 
-```
+```text
 GitHub Actions (cron toutes les 4h)
     ↓
 caldav_sync.py
@@ -49,8 +49,8 @@ python caldav_sync.py
 
 URL à communiquer :
 
-```
-https://sibalou.github.io/caldav-ics-paroisse/calendrier.ics
+```text
+https://calendrier.saintemariedespeuples.org/calendrier.ics
 ```
 
 Compatible iPhone, Google Calendar, Outlook, Thunderbird.
