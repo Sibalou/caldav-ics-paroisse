@@ -47,6 +47,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           cp calendrier.ics /tmp/calendrier.ics
+          rm calendrier.ics
           git fetch origin
           if git rev-parse --verify origin/gh-pages > /dev/null 2>&1; then
             git checkout gh-pages
