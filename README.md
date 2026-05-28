@@ -19,7 +19,8 @@ caldav_sync.py
     ├── merge tous les événements
     └── filtre les événements contenant #interne dans DESCRIPTION
     ↓
-calendrier.ics commité dans le repo
+calendrier.ics → branche gh-pages uniquement
+(sources sur main, non publiées)
     ↓
 GitHub Pages → URL publique stable
 ```

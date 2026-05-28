@@ -20,6 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -41,10 +42,20 @@ jobs:
           CALENDAR_NAME:    ${{ secrets.CALENDAR_NAME }}
         run: python caldav_sync.py
 
-      - name: Commit & push ICS
+      - name: Deploy ICS to gh-pages
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add calendrier.ics
+          cp calendrier.ics /tmp/calendrier.ics
+          git fetch origin
+          if git rev-parse --verify origin/gh-pages > /dev/null 2>&1; then
+            git checkout gh-pages
+          else
+            git checkout --orphan gh-pages
+            git rm -rf .
+          fi
+          cp /tmp/calendrier.ics calendrier.ics
+          touch .nojekyll
+          git add calendrier.ics .nojekyll
           git diff --cached --quiet || git commit -m "chore: sync CalDAV [$(date -u '+%Y-%m-%d %H:%M')] UTC"
-          git push
+          git push origin gh-pages

@@ -1,16 +1,8 @@
 # Guide de configuration — caldav-ics-paroisse
 
-## Étape 1 — Créer le repo GitHub
+## Étape 1 — Ajouter les GitHub Secrets
 
-```bash
-gh repo create Sibalou/caldav-ics-paroisse \
-  --public \
-  --description "Sync CalDAV → ICS public via GitHub Actions + GitHub Pages"
-```
-
-## Étape 2 — Ajouter les GitHub Secrets
-
-```bash
+```powershell
 gh secret set CALDAV_URL       --repo Sibalou/caldav-ics-paroisse
 gh secret set CALDAV_USER      --repo Sibalou/caldav-ics-paroisse
 gh secret set CALDAV_PASSWORD  --repo Sibalou/caldav-ics-paroisse
@@ -19,43 +11,45 @@ gh secret set CALENDAR_NAME    --repo Sibalou/caldav-ics-paroisse
 ```
 
 | Secret | Exemple |
-|---|---|
+| --- | --- |
 | `CALDAV_URL` | `https://caldav.example.com/user/` |
 | `CALDAV_USER` | `mon.email@example.com` |
 | `CALDAV_PASSWORD` | `monmotdepasse` |
 | `CALDAV_CALENDARS` | `Agenda Principal,Messes,Événements` (vide = tous) |
 | `CALENDAR_NAME` | `Agenda Paroisse` |
 
-## Étape 3 — Activer GitHub Pages
+## Étape 2 — Premier run manuel
 
-```bash
-gh api \
-  --method POST \
-  -H "Accept: application/vnd.github+json" \
-  /repos/Sibalou/caldav-ics-paroisse/pages \
-  -f source='{"branch":"main","path":"/"}'
-```
+Le workflow crée automatiquement la branche `gh-pages` au premier run :
 
-Ou via l'UI : Settings → Pages → Source : main / root → Save
-
-## Étape 4 — Premier run manuel
-
-```bash
+```powershell
 gh workflow run sync.yml --repo Sibalou/caldav-ics-paroisse
 gh run watch --repo Sibalou/caldav-ics-paroisse
 ```
 
-## Étape 5 — Vérifier
+## Étape 3 — Configurer GitHub Pages sur gh-pages
 
-```bash
-curl -I https://sibalou.github.io/caldav-ics-paroisse/calendrier.ics
+Une fois le premier run terminé (branche `gh-pages` créée) :
+
+```powershell
+gh api --method PUT `
+  -H "Accept: application/vnd.github+json" `
+  repos/Sibalou/caldav-ics-paroisse/pages `
+  --field source[branch]=gh-pages `
+  --field source[path]=/
 ```
 
-HTTP 200 = tout fonctionne.
+Ou via l'UI : Settings → Pages → Source : `gh-pages` / `/ (root)` → Save
+
+## Étape 4 — Vérifier
+
+```powershell
+gh api repos/Sibalou/caldav-ics-paroisse/pages --jq '.status, .html_url'
+```
 
 ## Dépannage
 
-```bash
+```powershell
 # Derniers runs
 gh run list --repo Sibalou/caldav-ics-paroisse --workflow sync.yml
 
@@ -65,8 +59,8 @@ gh run view [RUN_ID] --repo Sibalou/caldav-ics-paroisse --log
 # Secrets configurés
 gh secret list --repo Sibalou/caldav-ics-paroisse
 
-# Statut GitHub Pages
-gh api /repos/Sibalou/caldav-ics-paroisse/pages --jq '.status, .html_url'
+# Contenu de la branche gh-pages
+gh api repos/Sibalou/caldav-ics-paroisse/git/trees/gh-pages --jq '.tree[].path'
 ```
 
 ## Modifier la fréquence
