@@ -128,7 +128,8 @@ def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: st
                     if skip_internal and is_internal(component):
                         filtered += 1
                     else:
-                        _clean_enoria_links(component)
+                        if skip_internal:
+                            _clean_enoria_links(component)
                         _fix_allday_dtend(component)
                         merged.add_component(component)
                         kept += 1
