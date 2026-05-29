@@ -56,7 +56,10 @@ def get_calendars(client: caldav.DAVClient) -> list:
         if missing:
             log.warning("Calendriers introuvables : %s", missing)
     if EXCLUDE_CALENDARS:
-        selected = [c for c in selected if c.name not in EXCLUDE_CALENDARS]
+        selected = [
+            c for c in selected
+            if not any(excl.lower() in c.name.lower() for excl in EXCLUDE_CALENDARS)
+        ]
         log.info("Après exclusion : %d calendrier(s) retenus", len(selected))
     return selected
 
