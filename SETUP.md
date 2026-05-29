@@ -110,6 +110,7 @@ Ces variables sont configurées directement dans `.github/workflows/sync.yml` (p
 | --- | --- | --- |
 | `FILTER_KEYWORD` | `#interne` | Mot-clé filtré du calendrier public |
 | `EXCLUDE_CALENDARS` | `Locations de salle` | Calendrier(s) exclus des deux fichiers (correspondance partielle) |
+| *(code)* | `web.enoria.app` | Liens URL enoria supprimés automatiquement des événements |
 | `CALENDAR_NAME_PRIVATE` | `Sainte Marie des Peuples - Interne` | Nom du calendrier interne dans les apps |
 | `OUTPUT_FILENAME` | `calendrier.ics` | Nom du fichier public |
 | `OUTPUT_FILENAME_PRIVATE` | `calendrier-interne.ics` | Nom du fichier interne |
