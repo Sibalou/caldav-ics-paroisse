@@ -48,7 +48,8 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           cp calendrier.ics /tmp/calendrier.ics
-          rm calendrier.ics
+          cp calendrier-private.ics /tmp/calendrier-private.ics
+          rm calendrier.ics calendrier-private.ics
           git fetch origin
           if git rev-parse --verify origin/gh-pages > /dev/null 2>&1; then
             git checkout gh-pages
@@ -57,6 +58,7 @@ jobs:
             git rm -rf .
           fi
           cp /tmp/calendrier.ics calendrier.ics
+          cp /tmp/calendrier-private.ics calendrier-private.ics
           touch .nojekyll
           {
             echo '<!DOCTYPE html>'
@@ -67,6 +69,6 @@ jobs:
             echo '</head><body></body></html>'
           } > index.html
           echo 'calendrier.saintemariedespeuples.org' > CNAME
-          git add calendrier.ics .nojekyll index.html CNAME
+          git add calendrier.ics calendrier-private.ics .nojekyll index.html CNAME
           git diff --cached --quiet || git commit -m "chore: sync CalDAV [$(date -u '+%Y-%m-%d %H:%M')] UTC"
           git push origin gh-pages
