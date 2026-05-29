@@ -20,7 +20,7 @@ caldav_sync.py
     ├── connexion CalDAV (credentials via GitHub Secrets)
     ├── récupère 6 calendriers (Locations de salle exclu)
     ├── merge tous les événements
-    ├── corrige les événements journée entière (DTEND)
+    ├── corrige DTEND journée entière (+1 jour : Enoria inclusif → RFC 5545 exclusif)
     ├── calendrier.ics         → filtre les événements #interne
     └── calendrier-interne.ics → conserve les événements #interne
     ↓
