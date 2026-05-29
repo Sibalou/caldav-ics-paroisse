@@ -92,10 +92,11 @@ def _clean_enoria_links(component) -> None:
         del component["URL"]
 
 def _fix_allday_dtend(component) -> None:
-    """Corrige DTEND des événements journée entière quand DTEND <= DTSTART.
+    """Corrige DTEND des événements journée entière.
 
-    Certains serveurs CalDAV stockent DTEND = DTSTART au lieu de DTSTART + 1 jour,
-    ce qui fait afficher l'événement comme finissant la veille dans les apps calendrier.
+    Enoria stocke DTEND comme dernier jour inclusif (non-RFC).
+    La RFC 5545 exige DTEND exclusif (= dernier jour + 1 jour).
+    On ajoute systématiquement +1 jour à DTEND pour tous les événements DATE.
     """
     dtstart = component.get("DTSTART")
     if dtstart is None:
@@ -108,8 +109,7 @@ def _fix_allday_dtend(component) -> None:
         return
     dtend_dt = dtend.dt
     if isinstance(dtend_dt, date) and not isinstance(dtend_dt, datetime):
-        if dtend_dt <= dt:
-            component["DTEND"].dt = dt + timedelta(days=1)
+        component["DTEND"].dt = dtend_dt + timedelta(days=1)
 
 def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: str = None) -> bytes:
     merged = Calendar()
