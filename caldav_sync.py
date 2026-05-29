@@ -36,7 +36,7 @@ CALDAV_CALENDARS = [
 
 FILTER_KEYWORD          = os.getenv("FILTER_KEYWORD", "#interne")
 OUTPUT_FILENAME         = os.getenv("OUTPUT_FILENAME", "calendrier.ics")
-OUTPUT_FILENAME_PRIVATE = os.getenv("OUTPUT_FILENAME_PRIVATE", "calendrier-private.ics")
+OUTPUT_FILENAME_PRIVATE = os.getenv("OUTPUT_FILENAME_PRIVATE", "calendrier-interne.ics")
 EXCLUDE_CALENDARS = [
     c.strip()
     for c in os.getenv("EXCLUDE_CALENDARS", "").split(",")
@@ -143,7 +143,8 @@ def main():
             f.write(ics_public)
         log.info("Fichier public écrit : %s", OUTPUT_FILENAME)
 
-        ics_private = build_ics(events, skip_internal=False, calendar_name=calendar_name + " — Complet")
+        calendar_name_private = os.getenv("CALENDAR_NAME_PRIVATE", calendar_name + " — Complet")
+        ics_private = build_ics(events, skip_internal=False, calendar_name=calendar_name_private)
         with open(OUTPUT_FILENAME_PRIVATE, "wb") as f:
             f.write(ics_private)
         log.info("Fichier complet écrit : %s", OUTPUT_FILENAME_PRIVATE)

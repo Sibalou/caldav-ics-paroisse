@@ -39,6 +39,7 @@ jobs:
           CALDAV_CALENDARS: ${{ secrets.CALDAV_CALENDARS }}
           FILTER_KEYWORD:   "#interne"
           EXCLUDE_CALENDARS: "Locations de salle"
+          CALENDAR_NAME_PRIVATE: "Sainte Marie des Peuples - Interne"
           OUTPUT_FILENAME:  "calendrier.ics"
           CALENDAR_NAME:    ${{ secrets.CALENDAR_NAME }}
         run: python caldav_sync.py
@@ -48,8 +49,8 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           cp calendrier.ics /tmp/calendrier.ics
-          cp calendrier-private.ics /tmp/calendrier-private.ics
-          rm calendrier.ics calendrier-private.ics
+          cp calendrier-interne.ics /tmp/calendrier-interne.ics
+          rm calendrier.ics calendrier-interne.ics
           git fetch origin
           if git rev-parse --verify origin/gh-pages > /dev/null 2>&1; then
             git checkout gh-pages
@@ -58,7 +59,7 @@ jobs:
             git rm -rf .
           fi
           cp /tmp/calendrier.ics calendrier.ics
-          cp /tmp/calendrier-private.ics calendrier-private.ics
+          cp /tmp/calendrier-interne.ics calendrier-interne.ics
           touch .nojekyll
           {
             echo '<!DOCTYPE html>'
@@ -69,6 +70,6 @@ jobs:
             echo '</head><body></body></html>'
           } > index.html
           echo 'calendrier.saintemariedespeuples.org' > CNAME
-          git add calendrier.ics calendrier-private.ics .nojekyll index.html CNAME
+          git add calendrier.ics calendrier-interne.ics .nojekyll index.html CNAME
           git diff --cached --quiet || git commit -m "chore: sync CalDAV [$(date -u '+%Y-%m-%d %H:%M')] UTC"
           git push origin gh-pages
