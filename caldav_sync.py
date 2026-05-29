@@ -6,7 +6,7 @@ Conçu pour tourner dans GitHub Actions → le .ics est commité dans le repo (s
 import os
 import sys
 import logging
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import caldav
 from icalendar import Calendar
@@ -33,6 +33,11 @@ CALDAV_CALENDARS = [
 
 FILTER_KEYWORD  = os.getenv("FILTER_KEYWORD", "#interne")
 OUTPUT_FILENAME = os.getenv("OUTPUT_FILENAME", "calendrier.ics")
+EXCLUDE_CALENDARS = [
+    c.strip()
+    for c in os.getenv("EXCLUDE_CALENDARS", "").split(",")
+    if c.strip()
+]
 
 def connect_caldav() -> caldav.DAVClient:
     log.info("Connexion CalDAV : %s", CALDAV_URL)
@@ -44,11 +49,15 @@ def get_calendars(client: caldav.DAVClient) -> list:
     log.info("Calendriers disponibles : %s", [c.name for c in all_cals])
     if not CALDAV_CALENDARS:
         log.info("Aucun filtre → inclusion de tous (%d)", len(all_cals))
-        return all_cals
-    selected = [c for c in all_cals if c.name in CALDAV_CALENDARS]
-    missing = set(CALDAV_CALENDARS) - {c.name for c in selected}
-    if missing:
-        log.warning("Calendriers introuvables : %s", missing)
+        selected = list(all_cals)
+    else:
+        selected = [c for c in all_cals if c.name in CALDAV_CALENDARS]
+        missing = set(CALDAV_CALENDARS) - {c.name for c in selected}
+        if missing:
+            log.warning("Calendriers introuvables : %s", missing)
+    if EXCLUDE_CALENDARS:
+        selected = [c for c in selected if c.name not in EXCLUDE_CALENDARS]
+        log.info("Après exclusion : %d calendrier(s) retenus", len(selected))
     return selected
 
 def fetch_events(calendars: list) -> list:
@@ -65,6 +74,26 @@ def fetch_events(calendars: list) -> list:
 def is_internal(component) -> bool:
     description = component.get("DESCRIPTION", "")
     return FILTER_KEYWORD.lower() in str(description).lower() if description else False
+
+def _fix_allday_dtend(component) -> None:
+    """Corrige DTEND des événements journée entière quand DTEND <= DTSTART.
+
+    Certains serveurs CalDAV stockent DTEND = DTSTART au lieu de DTSTART + 1 jour,
+    ce qui fait afficher l'événement comme finissant la veille dans les apps calendrier.
+    """
+    dtstart = component.get("DTSTART")
+    if dtstart is None:
+        return
+    dt = dtstart.dt
+    if not (isinstance(dt, date) and not isinstance(dt, datetime)):
+        return  # pas un événement journée entière
+    dtend = component.get("DTEND")
+    if dtend is None:
+        return
+    dtend_dt = dtend.dt
+    if isinstance(dtend_dt, date) and not isinstance(dtend_dt, datetime):
+        if dtend_dt <= dt:
+            component["DTEND"].dt = dt + timedelta(days=1)
 
 def build_ics(caldav_events: list) -> bytes:
     merged = Calendar()
@@ -83,6 +112,7 @@ def build_ics(caldav_events: list) -> bytes:
                     if is_internal(component):
                         filtered += 1
                     else:
+                        _fix_allday_dtend(component)
                         merged.add_component(component)
                         kept += 1
         except Exception as exc:

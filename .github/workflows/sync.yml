@@ -38,6 +38,7 @@ jobs:
           CALDAV_PASSWORD:  ${{ secrets.CALDAV_PASSWORD }}
           CALDAV_CALENDARS: ${{ secrets.CALDAV_CALENDARS }}
           FILTER_KEYWORD:   "#interne"
+          EXCLUDE_CALENDARS: "Locations de salle"
           OUTPUT_FILENAME:  "calendrier.ics"
           CALENDAR_NAME:    ${{ secrets.CALENDAR_NAME }}
         run: python caldav_sync.py
