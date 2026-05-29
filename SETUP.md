@@ -10,13 +10,13 @@ gh secret set CALDAV_CALENDARS --repo Sibalou/caldav-ics-paroisse
 gh secret set CALENDAR_NAME    --repo Sibalou/caldav-ics-paroisse
 ```
 
-| Secret | Exemple |
-| --- | --- |
-| `CALDAV_URL` | `https://caldav.example.com/user/` |
-| `CALDAV_USER` | `mon.email@example.com` |
-| `CALDAV_PASSWORD` | `monmotdepasse` |
-| `CALDAV_CALENDARS` | `Agenda Principal,Messes,Événements` (vide = tous) |
-| `CALENDAR_NAME` | `Agenda Paroisse` |
+| Secret | Exemple | Description |
+| --- | --- | --- |
+| `CALDAV_URL` | `https://caldav.example.com/user/` | URL du serveur CalDAV |
+| `CALDAV_USER` | `mon.email@example.com` | Identifiant CalDAV |
+| `CALDAV_PASSWORD` | `monmotdepasse` | Mot de passe CalDAV |
+| `CALDAV_CALENDARS` | `Agenda,Messes` (vide = tous) | Calendriers à inclure |
+| `CALENDAR_NAME` | `Sainte Marie des Peuples` | Nom affiché dans les apps |
 
 ## Étape 2 — Premier run manuel
 
@@ -47,22 +47,6 @@ Ou via l'UI : Settings → Pages → Source : `gh-pages` / `/ (root)` → Save
 gh api repos/Sibalou/caldav-ics-paroisse/pages --jq '.status, .html_url'
 ```
 
-## Dépannage
-
-```powershell
-# Derniers runs
-gh run list --repo Sibalou/caldav-ics-paroisse --workflow sync.yml
-
-# Logs d'un run en échec
-gh run view [RUN_ID] --repo Sibalou/caldav-ics-paroisse --log
-
-# Secrets configurés
-gh secret list --repo Sibalou/caldav-ics-paroisse
-
-# Contenu de la branche gh-pages
-gh api repos/Sibalou/caldav-ics-paroisse/git/trees/gh-pages --jq '.tree[].path'
-```
-
 ## Domaine personnalisé (calendrier.saintemariedespeuples.org)
 
 ### Étape 1 — IONOS : supprimer la redirection existante
@@ -70,6 +54,7 @@ gh api repos/Sibalou/caldav-ics-paroisse/git/trees/gh-pages --jq '.tree[].path'
 1. IONOS → **Domaines & SSL** → `saintemariedespeuples.org`
 2. Onglet **Sous-domaines** → repérer `calendrier`
 3. **Supprimer** l'entrée de redirection entièrement (pas juste la vider)
+4. Supprimer également les enregistrements A, AAAA, MX, TXT SPF du sous-domaine `calendrier`
 
 ### Étape 2 — IONOS : créer le CNAME
 
@@ -115,6 +100,45 @@ $r.Headers['Content-Type']     # text/calendar
 
 # Validation
 if ($r.Headers['Content-Type'] -like "*text/calendar*") { "OK" } else { "ERREUR Content-Type" }
+```
+
+## Variables de comportement (workflow)
+
+Ces variables sont configurées directement dans `.github/workflows/sync.yml` (pas des Secrets — elles ne sont pas sensibles) :
+
+| Variable | Valeur actuelle | Description |
+| --- | --- | --- |
+| `FILTER_KEYWORD` | `#interne` | Mot-clé filtré du calendrier public |
+| `EXCLUDE_CALENDARS` | `Locations de salle` | Calendrier(s) exclus des deux fichiers (correspondance partielle) |
+| `CALENDAR_NAME_PRIVATE` | `Sainte Marie des Peuples - Interne` | Nom du calendrier interne dans les apps |
+| `OUTPUT_FILENAME` | `calendrier.ics` | Nom du fichier public |
+| `OUTPUT_FILENAME_PRIVATE` | `calendrier-interne.ics` | Nom du fichier interne |
+
+## Fichiers produits
+
+| Fichier | Contenu | URL |
+| --- | --- | --- |
+| `calendrier.ics` | Événements sans `#interne`, sans Locations de salle | `https://calendrier.saintemariedespeuples.org/calendrier.ics` |
+| `calendrier-interne.ics` | Tous les événements sauf Locations de salle | `https://calendrier.saintemariedespeuples.org/calendrier-interne.ics` |
+
+## Dépannage
+
+```powershell
+# Derniers runs
+gh run list --repo Sibalou/caldav-ics-paroisse --workflow sync.yml
+
+# Logs d'un run en échec
+gh run view [RUN_ID] --repo Sibalou/caldav-ics-paroisse --log
+
+# Secrets configurés
+gh secret list --repo Sibalou/caldav-ics-paroisse
+
+# Contenu de la branche gh-pages
+gh api repos/Sibalou/caldav-ics-paroisse/git/trees/gh-pages --jq '.tree[].path'
+
+# Vérifier le nom du calendrier dans le .ics
+curl -s https://calendrier.saintemariedespeuples.org/calendrier.ics | grep "X-WR-CALNAME"
+curl -s https://calendrier.saintemariedespeuples.org/calendrier-interne.ics | grep "X-WR-CALNAME"
 ```
 
 ## Modifier la fréquence

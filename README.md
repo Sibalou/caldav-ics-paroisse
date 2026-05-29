@@ -1,12 +1,15 @@
 # caldav-ics-paroisse
 
-Synchronisation automatique CalDAV → fichier `.ics` public via GitHub Actions + GitHub Pages.
+Synchronisation automatique CalDAV → fichiers `.ics` publics via GitHub Actions + GitHub Pages.
 
-Regénéré toutes les 4 heures. URL publique stable :
+Regénéré toutes les 4 heures.
 
-```text
-https://calendrier.saintemariedespeuples.org/calendrier.ics
-```
+## URLs
+
+| Calendrier | URL | Contenu |
+| --- | --- | --- |
+| **Public** | `https://calendrier.saintemariedespeuples.org/calendrier.ics` | Tous les événements sauf `#interne` et Locations de salle |
+| **Interne** | `https://calendrier.saintemariedespeuples.org/calendrier-interne.ics` | Tous les événements sauf Locations de salle |
 
 ## Architecture
 
@@ -15,14 +18,15 @@ GitHub Actions (cron toutes les 4h)
     ↓
 caldav_sync.py
     ├── connexion CalDAV (credentials via GitHub Secrets)
-    ├── récupère N calendriers
+    ├── récupère 6 calendriers (Locations de salle exclu)
     ├── merge tous les événements
-    └── filtre les événements contenant #interne dans DESCRIPTION
+    ├── corrige les événements journée entière (DTEND)
+    ├── calendrier.ics         → filtre les événements #interne
+    └── calendrier-interne.ics → conserve les événements #interne
     ↓
-calendrier.ics → branche gh-pages uniquement
-(sources sur main, non publiées)
+branche gh-pages uniquement (sources sur main, non publiées)
     ↓
-GitHub Pages → URL publique stable
+GitHub Pages → domaine personnalisé calendrier.saintemariedespeuples.org
 ```
 
 ## Setup
@@ -42,15 +46,21 @@ Copier `.env.example` en `.env` et renseigner les credentials :
 ```powershell
 Copy-Item .env.example .env
 # éditer .env avec vos identifiants CalDAV
-python caldav_sync.py
+uv run caldav_sync.py
 ```
 
 ## Abonnement calendrier
 
-URL à communiquer :
+URL publique (à communiquer largement) :
 
 ```text
 https://calendrier.saintemariedespeuples.org/calendrier.ics
+```
+
+URL interne (à communiquer aux membres uniquement) :
+
+```text
+https://calendrier.saintemariedespeuples.org/calendrier-interne.ics
 ```
 
 Compatible iPhone, Google Calendar, Outlook, Thunderbird.
