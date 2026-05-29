@@ -11,8 +11,11 @@ import sys
 import logging
 from datetime import date, datetime, timedelta, timezone
 
+import re
 import caldav
 from icalendar import Calendar
+
+ENORIA_RE = re.compile(r'https://web\.enoria\.app', re.IGNORECASE)
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -82,6 +85,12 @@ def is_internal(component) -> bool:
     description = component.get("DESCRIPTION", "")
     return FILTER_KEYWORD.lower() in str(description).lower() if description else False
 
+def _clean_enoria_links(component) -> None:
+    """Supprime le champ URL s'il pointe vers web.enoria.app."""
+    url = component.get("URL")
+    if url and ENORIA_RE.search(str(url)):
+        del component["URL"]
+
 def _fix_allday_dtend(component) -> None:
     """Corrige DTEND des événements journée entière quand DTEND <= DTSTART.
 
@@ -119,6 +128,7 @@ def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: st
                     if skip_internal and is_internal(component):
                         filtered += 1
                     else:
+                        _clean_enoria_links(component)
                         _fix_allday_dtend(component)
                         merged.add_component(component)
                         kept += 1
