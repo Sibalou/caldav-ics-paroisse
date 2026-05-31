@@ -111,7 +111,20 @@ def _fix_allday_dtend(component) -> None:
     if isinstance(dtend_dt, date) and not isinstance(dtend_dt, datetime):
         component["DTEND"].dt = dtend_dt + timedelta(days=1)
 
-def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: str = None) -> bytes:
+def _is_past(component, cutoff: date) -> bool:
+    """Retourne True si l'événement est entièrement terminé avant le cutoff.
+
+    Utilise DTEND (après fix +1 jour) pour inclure les événements multi-mois encore en cours.
+    DTEND est exclusif (RFC 5545) donc DTEND <= cutoff signifie terminé avant le cutoff.
+    """
+    ref = component.get("DTEND") or component.get("DTSTART")
+    if not ref:
+        return False
+    ref_dt = ref.dt
+    ref_date = ref_dt.date() if isinstance(ref_dt, datetime) else ref_dt
+    return ref_date <= cutoff
+
+def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: str = None, cutoff_date: date = None) -> bytes:
     merged = Calendar()
     merged.add("PRODID", "-//Paroisse CalDAV Sync//FR")
     merged.add("VERSION", "2.0")
@@ -119,7 +132,7 @@ def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: st
     merged.add("METHOD", "PUBLISH")
     merged.add("X-WR-CALNAME", calendar_name or os.getenv("CALENDAR_NAME", "Agenda Paroisse"))
     merged.add("X-WR-TIMEZONE", "Europe/Paris")
-    kept = filtered = 0
+    kept = filtered = past = 0
     for dav_event in caldav_events:
         try:
             cal_obj = Calendar.from_ical(dav_event.data)
@@ -131,11 +144,14 @@ def build_ics(caldav_events: list, skip_internal: bool = True, calendar_name: st
                         if skip_internal:
                             _clean_enoria_links(component)
                         _fix_allday_dtend(component)
-                        merged.add_component(component)
-                        kept += 1
+                        if cutoff_date and _is_past(component, cutoff_date):
+                            past += 1
+                        else:
+                            merged.add_component(component)
+                            kept += 1
         except Exception as exc:
             log.error("Erreur parsing événement : %s", exc)
-    log.info("Conservés : %d | Filtrés (%s) : %d", kept, FILTER_KEYWORD, filtered)
+    log.info("Conservés : %d | Filtrés (%s) : %d | Avant cutoff : %d", kept, FILTER_KEYWORD, filtered, past)
     return merged.to_ical()
 
 def main():
@@ -149,7 +165,11 @@ def main():
         events = fetch_events(calendars)
         calendar_name = os.getenv("CALENDAR_NAME", "Agenda Paroisse")
 
-        ics_public = build_ics(events, skip_internal=True, calendar_name=calendar_name)
+        today = datetime.now(timezone.utc).date()
+        cutoff = date(today.year, today.month, 1)
+        log.info("Cutoff calendrier public : %s", cutoff)
+
+        ics_public = build_ics(events, skip_internal=True, calendar_name=calendar_name, cutoff_date=cutoff)
         with open(OUTPUT_FILENAME, "wb") as f:
             f.write(ics_public)
         log.info("Fichier public écrit : %s", OUTPUT_FILENAME)
