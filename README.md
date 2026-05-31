@@ -21,8 +21,8 @@ caldav_sync.py
     ├── récupère 6 calendriers (Locations de salle exclu)
     ├── merge tous les événements
     ├── corrige DTEND journée entière (+1 jour : Enoria inclusif → RFC 5545 exclusif)
-    ├── calendrier.ics         → filtre les événements #interne
-    └── calendrier-interne.ics → conserve les événements #interne
+    ├── calendrier.ics         → filtre #interne + exclut les mois passés (cutoff = 1er du mois)
+    └── calendrier-interne.ics → historique complet, conserve les #interne
     ↓
 branche gh-pages uniquement (sources sur main, non publiées)
     ↓

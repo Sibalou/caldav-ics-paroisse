@@ -112,6 +112,7 @@ Ces variables sont configurées directement dans `.github/workflows/sync.yml` (p
 | `EXCLUDE_CALENDARS` | `Locations de salle` | Calendrier(s) exclus des deux fichiers (correspondance partielle) |
 | *(code)* | `web.enoria.app` | Liens URL enoria supprimés du calendrier public, conservés dans l'interne |
 | *(code)* | DTEND +1 jour | Enoria stocke DTEND inclusif (non-RFC) → +1 jour systématique sur tous les événements journée entière pour conformité RFC 5545 |
+| *(code, public uniquement)* | Cutoff = 1er du mois courant | Événements entièrement terminés avant le 1er du mois courant exclus du calendrier public. Recalculé automatiquement à chaque run. |
 | `CALENDAR_NAME_PRIVATE` | `Sainte Marie des Peuples - Interne` | Nom du calendrier interne dans les apps |
 | `OUTPUT_FILENAME` | `calendrier.ics` | Nom du fichier public |
 | `OUTPUT_FILENAME_PRIVATE` | `calendrier-interne.ics` | Nom du fichier interne |
