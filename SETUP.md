@@ -15,7 +15,7 @@ gh secret set CALENDAR_NAME    --repo Sibalou/caldav-ics-paroisse
 | `CALDAV_URL` | `https://caldav.example.com/user/` | URL du serveur CalDAV |
 | `CALDAV_USER` | `mon.email@example.com` | Identifiant CalDAV |
 | `CALDAV_PASSWORD` | `monmotdepasse` | Mot de passe CalDAV |
-| `CALDAV_CALENDARS` | `Agenda,Messes` (vide = tous) | Calendriers à inclure |
+| `CALDAV_CALENDARS` | `Agenda,Messes` | Calendriers à inclure. **Obligatoire** — le compte CalDAV Enoria est partagé avec le Diocèse de Chartres et d'autres paroisses ; laisser vide inclut tout le compte (fuite de données inter-paroisses, cf. incident du 2026-09-15 ci-dessous) |
 | `CALENDAR_NAME` | `Sainte Marie des Peuples` | Nom affiché dans les apps |
 
 ## Étape 2 — Premier run manuel
@@ -123,6 +123,14 @@ Ces variables sont configurées directement dans `.github/workflows/sync.yml` (p
 | --- | --- | --- |
 | `calendrier.ics` | Événements sans `#interne`, sans Locations de salle | `https://calendrier.saintemariedespeuples.org/calendrier.ics` |
 | `calendrier-interne.ics` | Tous les événements sauf Locations de salle | `https://calendrier.saintemariedespeuples.org/calendrier-interne.ics` |
+
+## Incident — fuite inter-paroisses (2026-09-15)
+
+Le compte Enoria/CalDAV utilisé est partagé entre le Diocèse de Chartres, la paroisse Sainte Marie des Peuples et une autre paroisse (Saint Paul en Val), soit 21 calendriers exposés sur le même identifiant. Le secret `CALDAV_CALENDARS` n'avait jamais été renseigné : `caldav_sync.py` prenait alors "aucun filtre → inclusion de tous", donc les événements des deux autres organisations se retrouvaient mélangés (sans marqueur distinctif dans les VEVENT) dans `calendrier.ics` et `calendrier-interne.ics` publiés publiquement.
+
+Correctif appliqué : `CALDAV_CALENDARS` renseigné avec les 7 calendriers `* - Paroisse Sainte Marie des Peuples` (le filtre `EXCLUDE_CALENDARS=Locations de salle` retire ensuite un calendrier, pour revenir aux 6 attendus). Vérifié via les logs du run manuel `35013964905` : 6 calendriers retenus, uniquement ceux de Sainte Marie des Peuples.
+
+**Point de vigilance** : si Enoria ajoute un nouveau calendrier côté Sainte Marie des Peuples, il ne sera *pas* inclus tant que `CALDAV_CALENDARS` n'est pas mis à jour (comportement volontaire — whitelist plutôt que blacklist, pour éviter que ce type de fuite se reproduise).
 
 ## Dépannage
 
