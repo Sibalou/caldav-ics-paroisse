@@ -33,9 +33,14 @@ CALDAV_PASSWORD = os.environ["CALDAV_PASSWORD"]
 
 CALDAV_CALENDARS = [
     c.strip()
-    for c in os.getenv("CALDAV_CALENDARS", "").split(",")
+    for c in os.environ["CALDAV_CALENDARS"].split(",")
     if c.strip()
 ]
+if not CALDAV_CALENDARS:
+    raise RuntimeError(
+        "CALDAV_CALENDARS ne doit jamais être vide : le compte CalDAV est "
+        "partagé avec d'autres paroisses/le diocèse (cf. incident 2026-09-15 dans SETUP.md)."
+    )
 
 FILTER_KEYWORD          = os.getenv("FILTER_KEYWORD", "#interne")
 OUTPUT_FILENAME         = os.getenv("OUTPUT_FILENAME", "calendrier.ics")
@@ -54,14 +59,10 @@ def get_calendars(client: caldav.DAVClient) -> list:
     principal = client.principal()
     all_cals = principal.calendars()
     log.info("Calendriers disponibles : %s", [c.name for c in all_cals])
-    if not CALDAV_CALENDARS:
-        log.info("Aucun filtre → inclusion de tous (%d)", len(all_cals))
-        selected = list(all_cals)
-    else:
-        selected = [c for c in all_cals if c.name in CALDAV_CALENDARS]
-        missing = set(CALDAV_CALENDARS) - {c.name for c in selected}
-        if missing:
-            log.warning("Calendriers introuvables : %s", missing)
+    selected = [c for c in all_cals if c.name in CALDAV_CALENDARS]
+    missing = set(CALDAV_CALENDARS) - {c.name for c in selected}
+    if missing:
+        log.warning("Calendriers introuvables : %s", missing)
     if EXCLUDE_CALENDARS:
         selected = [
             c for c in selected
