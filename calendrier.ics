@@ -8129,6 +8129,72 @@ LOCATION:Mainvilliers Eglise St Hilaire
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144558Z
+UID:caldav-reservations-salles-2537697@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144558Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144932Z
+UID:caldav-reservations-salles-2537699@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144932Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144933Z
+UID:caldav-reservations-salles-2537701@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144933Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144933Z
+UID:caldav-reservations-salles-2537703@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144933Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144933Z
+UID:caldav-reservations-salles-2537705@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144933Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:concert  eglise de ST hilaire
+DTSTART;TZID=Europe/Paris:20270529T164500
+DTEND;TZID=Europe/Paris:20270529T230000
+DTSTAMP:20260926T144934Z
+UID:caldav-reservations-salles-2537707@enoria
+DESCRIPTION:la demande au diocèse sera envoyée avec les partirions
+LAST-MODIFIED:20260926T144934Z
+LOCATION:Mainvilliers Eglise St Hilaire
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Casa
 DTSTART;TZID=Europe/Paris:20260918T190000
 DTEND;TZID=Europe/Paris:20260918T210000
