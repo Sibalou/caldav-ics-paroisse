@@ -54,3 +54,4 @@ et `ajouts_manuels.csv` (KT, etc.). Ne rien corriger à la main dans l'Excel : m
 - Rameaux, Semaine Sainte, Jeudi saint, Vendredi saint et **Messe Chrismale** (semaine sainte) : tous dans le même rouge (`rouge`). Le rouge vif des Rameaux venait du modèle 2025-2026.
 - Le générateur et ses données vivent désormais dans `caldav-ics-paroisse/calendrier_paroissial/` ; la copie du dépôt `diocese` est supprimée (doublon).
 - Période Carême prolongée jusqu'au samedi saint (27/03/2027) : jour et date en rouge les 26 et 27/03 (demande utilisateur).
+- WE de l'Ascension : affiché (ICS 06→09/05/2027, « WE Ascension »). WE de Pentecôte (15→17/05) toujours exclu : mêmes dates que « Pentecôte Miss. ccn ».
