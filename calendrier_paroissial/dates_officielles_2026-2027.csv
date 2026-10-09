@@ -13,7 +13,7 @@ date_debut,date_fin,libelle,categorie,style,afficher,dans_modele_2025,source,not
 2026-12-20,2026-12-20,4e dim. de l'Avent,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de l'Avent (Ordo) ; ajouté le 2026-10-09
 2026-12-25,2026-12-25,Noël,fete,jaune,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr) + service-public.gouv.fr/F2405,vendredi
 2027-01-01,2027-01-01,Jour de l'an,ferie,jaune,oui,oui,Ordo 2026-2027 CEF (Sainte Marie Mère de Dieu) + service-public.gouv.fr/F2405,vendredi
-2027-02-10,2027-03-25,Carême,periode,teinte,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),du mercredi des Cendres au Jeudi saint : le triduum pascal commence avec la messe du soir du Jeudi saint (Ordo) ; fond rouge (même rouge que les dimanches)
+2027-02-10,2027-03-27,Carême,periode,teinte,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),"du mercredi des Cendres au samedi saint (Semaine sainte) ; prolongé au 27/03 à la demande de l'utilisateur le 2026-10-09 (l'Ordo fait commencer le triduum pascal à la messe du soir du Jeudi saint) ; fond rouge"
 2027-02-10,2027-02-10,Cendres,liturgie,rouge,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),mercredi des Cendres
 2027-02-14,2027-02-14,1er dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
 2027-02-20,2027-03-07,Vacances d'hiver,vacances,barre,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise lundi 08/03/2027
