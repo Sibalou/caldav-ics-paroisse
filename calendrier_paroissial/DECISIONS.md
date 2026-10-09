@@ -56,3 +56,4 @@ et `ajouts_manuels.csv` (KT, etc.). Ne rien corriger à la main dans l'Excel : m
 - Période Carême prolongée jusqu'au samedi saint (27/03/2027) : jour et date en rouge les 26 et 27/03 (demande utilisateur).
 - WE de l'Ascension : affiché (ICS 06→09/05/2027, « WE Ascension »). WE de Pentecôte (15→17/05) toujours exclu : mêmes dates que « Pentecôte Miss. ccn ».
 - Fêtes Enoria affichées : Notre-Dame de Velankanni (19/09/2026) et Saint Antoine (19/06/2027) de la communauté Tamoule, Divine Miséricorde (04/04/2027) ; les autres « Fête… » d'Enoria restent remplacées par les dates officielles. Transfiguration (06/08/2027, Ordo) ajoutée.
+- Fêtes Enoria affichées (Tamoul, Divine Miséricorde) : en jaune (demande utilisateur 2026-10-09).
