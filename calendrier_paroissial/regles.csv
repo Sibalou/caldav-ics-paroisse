@@ -9,7 +9,10 @@ motif,action,libelle,style,raison
 ^Office\s*$,exclure,,,Récurrent
 ^concert,afficher,Concert,gris,Décision utilisateur 2026-10-09 : concerts réintégrés (doublons fusionnés)
 ^Vacances,exclure,,,Remplacé par les dates officielles (Éducation nationale)
-^Fête ,exclure,,,Remplacé par les dates officielles (service-public / Ordo)
+^Fête de Notre-Dame de Velankanni,afficher,ND Velankanni (Tamoul),bleu,Décision utilisateur 2026-10-09 : fêtes de la communauté Tamoule à afficher
+^Fête de Saint Antoine,afficher,St Antoine (Tamoul),bleu,Décision utilisateur 2026-10-09 : fêtes de la communauté Tamoule à afficher
+^Fête de la divine miséricorde,afficher,Divine Miséricorde,bleu,Décision utilisateur 2026-10-09 : fête Enoria non reprise par les dates officielles
+^Fête (de la Toussaint|de l.armistice|du travail|de la victoire|nationale|de l.Assomption),exclure,,,Remplacé par les dates officielles (service-public / Ordo)
 ^WE de l.Ascension,afficher,WE Ascension,bleu,Décision utilisateur 2026-10-09 : le WE (ICS 06→09/05) doit apparaître ; l'Ascension (jeudi) vient de l'Ordo
 ^WE de Pentec,exclure,,,Remplacé par les dates officielles
 ^Avent\s*$,exclure,,,Remplacé par l'Ordo CEF

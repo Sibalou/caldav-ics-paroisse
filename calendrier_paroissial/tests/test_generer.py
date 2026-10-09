@@ -209,3 +209,10 @@ def test_evenement_horodate_sur_deux_jours(tmp_path):
     out, _ = g.lire_ics(str(f))
     assert out[0][1:] == (date(2026, 11, 14), date(2026, 11, 15))
     assert out[1][1:] == (date(2026, 11, 14), date(2026, 11, 14))
+
+
+def test_fetes_enoria_communaute_tamoule_affichees():
+    assert classer("Fête de Saint Antoine par la communauté Tamoul")[0] == "afficher"
+    assert classer("Fête de Notre-Dame de Velankanni par la communauté Tamoul")[0] == "afficher"
+    assert classer("Fête de la divine miséricorde")[0] == "afficher"
+    assert classer("Fête de la Toussaint")[0] == "exclure"
