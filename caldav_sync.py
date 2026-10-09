@@ -93,11 +93,12 @@ def _clean_enoria_links(component) -> None:
         del component["URL"]
 
 def _fix_allday_dtend(component) -> None:
-    """Corrige DTEND des événements journée entière.
+    """Garantit un DTEND valide pour les événements journée entière.
 
-    Enoria stocke DTEND comme dernier jour inclusif (non-RFC).
-    La RFC 5545 exige DTEND exclusif (= dernier jour + 1 jour).
-    On ajoute systématiquement +1 jour à DTEND pour tous les événements DATE.
+    Enoria exporte déjà un DTEND exclusif (RFC 5545 : dernier jour + 1). Ne rien ajouter :
+    l'ancien +1 systématique allongeait tous les événements d'un jour (constaté le 2026-10-09 :
+    un événement d'un seul jour avait une durée de 2 jours, aucun n'avait une durée de 1).
+    Seul un DTEND <= DTSTART (invalide) est ramené à DTSTART + 1 jour, avec un avertissement.
     """
     dtstart = component.get("DTSTART")
     if dtstart is None:
@@ -109,13 +110,15 @@ def _fix_allday_dtend(component) -> None:
     if dtend is None:
         return
     dtend_dt = dtend.dt
-    if isinstance(dtend_dt, date) and not isinstance(dtend_dt, datetime):
-        component["DTEND"].dt = dtend_dt + timedelta(days=1)
+    if isinstance(dtend_dt, date) and not isinstance(dtend_dt, datetime) and dtend_dt <= dt:
+        log.warning("DTEND <= DTSTART pour '%s' (%s) : ramené à DTSTART + 1 jour",
+                    component.get("SUMMARY"), dt)
+        component["DTEND"].dt = dt + timedelta(days=1)
 
 def _is_past(component, cutoff: date) -> bool:
     """Retourne True si l'événement est entièrement terminé avant le cutoff.
 
-    Utilise DTEND (après fix +1 jour) pour inclure les événements multi-mois encore en cours.
+    Utilise DTEND (exclusif) pour inclure les événements multi-mois encore en cours.
     DTEND est exclusif (RFC 5545) donc DTEND <= cutoff signifie terminé avant le cutoff.
     """
     ref = component.get("DTEND") or component.get("DTSTART")
