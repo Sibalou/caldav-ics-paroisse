@@ -21,7 +21,7 @@ date_debut,date_fin,libelle,categorie,style,afficher,dans_modele_2025,source,not
 2027-02-28,2027-02-28,3e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
 2027-03-07,2027-03-07,4e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de Laetare (Ordo) ; ajouté le 2026-10-09
 2027-03-14,2027-03-14,5e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
-2027-03-21,2027-03-21,Rameaux,liturgie,rouge_vif,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche des Rameaux et de la Passion
+2027-03-21,2027-03-21,Rameaux,liturgie,rouge,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche des Rameaux et de la Passion
 2027-03-21,2027-03-27,Semaine Sainte,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),"du dimanche des Rameaux au samedi saint ; ajouté à la demande de l'utilisateur le 2026-10-01 (l'ICS donnait 22→29/03, incluant Pâques : écart, Ordo retenu)"
 2027-03-25,2027-03-25,Jeudi saint,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),ajouté à la demande de l'utilisateur le 2026-10-01 (absent du modèle 2025-2026 - à arbitrer)
 2027-03-26,2027-03-26,Vendredi saint,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),ajouté à la demande de l'utilisateur le 2026-10-01 (absent du modèle 2025-2026 - à arbitrer)

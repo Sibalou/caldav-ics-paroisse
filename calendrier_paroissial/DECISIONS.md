@@ -49,3 +49,7 @@ et `ajouts_manuels.csv` (KT, etc.). Ne rien corriger à la main dans l'Excel : m
 - Couleurs : un événement long (≥ 5 jours) ne partage pas sa couleur avec un événement simultané ; Semaine Épiphanie = rose (règle) ; Semaine missionnaire recolorée automatiquement.
 - Avent (29/11→24/12) et Carême (10/02→25/03) = périodes (fond rouge), dimanches de l'Avent et du Carême libellés (Ordo 2026-2027 CEF).
 - Corrigé dans Enoria par l'utilisateur : Semaine missionnaire mondiale (11→18/10), Dimanche des Rameaux (21/03/2027). La suspension de l'absence du Père Pascal n'est plus nécessaire (20/10→20/11, sans chevauchement).
+
+## 2026-10-09 (suite 2) — Rouge de la Semaine sainte
+- Rameaux, Semaine Sainte, Jeudi saint, Vendredi saint et **Messe Chrismale** (semaine sainte) : tous dans le même rouge (`rouge`). Le rouge vif des Rameaux venait du modèle 2025-2026.
+- Le générateur et ses données vivent désormais dans `caldav-ics-paroisse/calendrier_paroissial/` ; la copie du dépôt `diocese` est supprimée (doublon).

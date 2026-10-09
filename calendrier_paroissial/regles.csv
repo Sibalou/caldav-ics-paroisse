@@ -38,7 +38,7 @@ motif,action,libelle,style,raison
 ^Conseil presbytéral,afficher,Conseil presbytéral,vert,
 ^Retraite diocésaine,afficher,Retraite des prêtres,vert,
 ^Rencontre des prêtres,afficher,Rencontre des prêtres,vert,
-^Messe Chrismale,afficher,Messe Chrismale,vert,
+^Messe Chrismale,afficher,Messe Chrismale,rouge,Décision utilisateur 2026-10-09 : même rouge que la Semaine sainte
 ^Rencontre Chartres 2040,afficher,Chartres 2040,vert,
 ^Formation\s+diocèse,afficher,Formation diocèse,vert,
 ^Baptême,afficher,Baptême,or,Nom volontairement retiré (RGPD)
