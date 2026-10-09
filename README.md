@@ -34,6 +34,7 @@ GitHub Pages → domaine personnalisé calendrier.saintemariedespeuples.org
 Le dossier [`calendrier_paroissial/`](calendrier_paroissial/README.md) génère le calendrier annuel (xlsx + PDF + rapport de contrôle) à partir du `calendrier-interne.ics`. Le workflow `calendrier.yml` le lance **chaque jour à 6h (heure de Paris)**, seulement si l'ICS publié, les règles ou le code ont changé, et publie le résultat dans `calendrier-paroissial/` sur gh-pages :
 
 - `https://calendrier.saintemariedespeuples.org/calendrier-paroissial/Calendrier_paroissial_2026-2027.pdf` (et `.xlsx`, `rapport_controle_2026-2027.md`)
+- Adresses fixes (toujours la saison en cours) : `https://calendrier.saintemariedespeuples.org/calendrier-paroissial/calendrier.pdf` et `.../calendrier.xlsx`
 - Lancement manuel : onglet Actions → « Calendrier paroissial (xlsx + PDF) » → Run workflow (option « forcer »).
 - Aucun secret n'est utilisé ; ces fichiers n'exposent que ce que l'ICS publié contient déjà (aucun nom de personne n'est écrit).
 
