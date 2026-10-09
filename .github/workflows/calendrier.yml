@@ -1,0 +1,149 @@
+name: Calendrier paroissial (xlsx + PDF)
+
+# Génère chaque jour à 6h (heure de Paris) le calendrier paroissial Excel + PDF + rapport de contrôle,
+# seulement si le calendrier-interne.ics publié ou les règles ont changé depuis la dernière génération.
+# Aucun secret : lecture du .ics déjà publié sur gh-pages ; sortie publiée dans gh-pages/calendrier-paroissial/.
+on:
+  schedule:
+    - cron: "0 4 * * *"   # 6h en heure d'été (CEST)
+    - cron: "0 5 * * *"   # 6h en heure d'hiver (CET) ; l'autre déclenchement est ignoré (voir « Heure de Paris »)
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Régénérer même si rien n'a changé"
+        type: boolean
+        default: false
+      annee:
+        description: "Année de rentrée (ex. 2026 pour 2026-2027) ; vide = saison en cours"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages-publish   # partagé avec sync.yml : un seul push sur gh-pages à la fois
+  cancel-in-progress: false
+
+jobs:
+  calendrier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Heure de Paris
+        id: heure
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          H=$(TZ=Europe/Paris date +%H)
+          if [ "$EVENT" = "schedule" ] && [ "$H" != "06" ]; then
+            echo "Il est ${H}h à Paris : ce déclenchement n'est pas celui de 6h, rien à faire."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout (code)
+        if: steps.heure.outputs.go == 'true'
+        uses: actions/checkout@v4
+
+      - name: Checkout gh-pages (ICS publié)
+        if: steps.heure.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: pages
+
+      - name: Saison
+        if: steps.heure.outputs.go == 'true'
+        id: saison
+        env:
+          ANNEE_INPUT: ${{ inputs.annee }}
+        run: |
+          if [ -n "$ANNEE_INPUT" ]; then
+            echo "$ANNEE_INPUT" | grep -Eq '^20[0-9]{2}$' || { echo "annee invalide"; exit 1; }
+            Y="$ANNEE_INPUT"
+          else
+            Y=$(TZ=Europe/Paris date +%Y); M=$(TZ=Europe/Paris date +%m)
+            [ "$((10#$M))" -ge 9 ] || Y=$((Y - 1))
+          fi
+          echo "annee=$Y" >> "$GITHUB_OUTPUT"
+          echo "Saison ${Y}-$((Y + 1))"
+
+      - name: Empreinte (ICS + règles + code)
+        if: steps.heure.outputs.go == 'true'
+        id: empreinte
+        run: |
+          H=$(cat pages/calendrier-interne.ics calendrier_paroissial/generer_calendrier.py \
+                  calendrier_paroissial/regles.csv calendrier_paroissial/dates_officielles_*.csv \
+                  calendrier_paroissial/ajouts_manuels.csv | sha256sum | cut -c1-32)
+          echo "hash=$H" >> "$GITHUB_OUTPUT"
+
+      - name: Déjà généré pour cette empreinte ?
+        if: steps.heure.outputs.go == 'true'
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: .marqueur
+          key: calendrier-${{ steps.saison.outputs.annee }}-${{ steps.empreinte.outputs.hash }}
+
+      - name: Décision
+        id: decision
+        env:
+          GO: ${{ steps.heure.outputs.go }}
+          HIT: ${{ steps.cache.outputs.cache-hit }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ "$GO" = "true" ] && { [ "$HIT" != "true" ] || [ "$FORCE" = "true" ]; }; then
+            echo "generer=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "generer=false" >> "$GITHUB_OUTPUT"
+            echo "Rien à régénérer."
+          fi
+
+      - name: Setup Python
+        if: steps.decision.outputs.generer == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: |
+            requirements.txt
+            calendrier_paroissial/requirements.txt
+
+      - name: Installer dépendances et LibreOffice
+        if: steps.decision.outputs.generer == 'true'
+        run: |
+          pip install -r requirements.txt -r calendrier_paroissial/requirements.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libreoffice-calc fonts-crosextra-carlito
+
+      - name: Tests
+        if: steps.decision.outputs.generer == 'true'
+        run: python -m pytest -q tests calendrier_paroissial/tests
+
+      - name: Générer xlsx + PDF + rapport
+        if: steps.decision.outputs.generer == 'true'
+        env:
+          ANNEE: ${{ steps.saison.outputs.annee }}
+        run: |
+          python calendrier_paroissial/generer_calendrier.py \
+            --annee "$ANNEE" --ics pages/calendrier-interne.ics --sortie sortie
+          test -s "sortie/Calendrier_paroissial_${ANNEE}-$((ANNEE + 1)).pdf"
+          touch .marqueur
+
+      - name: Publier sur gh-pages
+        if: steps.decision.outputs.generer == 'true'
+        run: |
+          cd pages
+          mkdir -p calendrier-paroissial
+          cp ../sortie/* calendrier-paroissial/
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add calendrier-paroissial
+          if git diff --cached --quiet; then echo "Aucun changement à publier"; exit 0; fi
+          git commit -m "chore(calendrier): xlsx + pdf + rapport [$(date -u '+%Y-%m-%d %H:%M')] UTC"
+          for i in 1 2 3; do
+            git push origin gh-pages && break
+            git pull --rebase origin gh-pages
+          done

@@ -1,0 +1,5 @@
+sortie/
+venv/
+.venv/
+__pycache__/
+*.ics

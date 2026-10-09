@@ -1,0 +1,41 @@
+date_debut,date_fin,libelle,categorie,style,afficher,dans_modele_2025,source,note
+2026-09-01,2026-09-01,Rentrée scolaire,scolaire,gris,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise des élèves le mardi 1er septembre 2026
+2026-10-17,2026-11-01,Vacances de la Toussaint,vacances,barre,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,départ samedi 17/10 - reprise lundi 02/11 (date_fin = dernier jour de vacances)
+2026-11-01,2026-11-01,Toussaint,fete,jaune,oui,oui,Ordo 2025-2026 CEF (liturgie.catholique.fr) + service-public.gouv.fr/F2405,dimanche
+2026-11-02,2026-11-02,Défunts,liturgie,or_fonce,oui,oui,Ordo 2025-2026 CEF (liturgie.catholique.fr),Commémoration de tous les fidèles défunts - lundi
+2026-11-11,2026-11-11,Armistice 1918,ferie,jaune,oui,oui,service-public.gouv.fr/F2405,mercredi
+2026-11-22,2026-11-22,Christ Roi,liturgie,jaune,oui,non,Ordo 2025-2026 CEF (liturgie.catholique.fr),ajouté à la demande de l'utilisateur le 2026-10-01 (absent du modèle 2025-2026 - à arbitrer)
+2026-11-29,2026-11-29,1er dim. de l'Avent,liturgie,rouge,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),1er dimanche de l'Avent
+2026-11-29,2026-12-24,Avent,periode,teinte,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),"du 1er dimanche de l'Avent (29/11) au 24/12 (férie de l'Avent, Ordo) ; fond rouge (même rouge que les dimanches)"
+2026-12-06,2026-12-06,2e dim. de l'Avent,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de l'Avent (Ordo) ; ajouté le 2026-10-09
+2026-12-13,2026-12-13,3e dim. de l'Avent,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de Gaudete (Ordo) ; ajouté le 2026-10-09
+2026-12-19,2027-01-03,Vacances de Noël,vacances,barre,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise lundi 04/01/2027
+2026-12-20,2026-12-20,4e dim. de l'Avent,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de l'Avent (Ordo) ; ajouté le 2026-10-09
+2026-12-25,2026-12-25,Noël,fete,jaune,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr) + service-public.gouv.fr/F2405,vendredi
+2027-01-01,2027-01-01,Jour de l'an,ferie,jaune,oui,oui,Ordo 2026-2027 CEF (Sainte Marie Mère de Dieu) + service-public.gouv.fr/F2405,vendredi
+2027-02-10,2027-03-27,Carême,periode,teinte,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),"du mercredi des Cendres au samedi saint (Semaine sainte) ; prolongé au 27/03 à la demande de l'utilisateur le 2026-10-09 (l'Ordo fait commencer le triduum pascal à la messe du soir du Jeudi saint) ; fond rouge"
+2027-02-10,2027-02-10,Cendres,liturgie,rouge,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),mercredi des Cendres
+2027-02-14,2027-02-14,1er dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
+2027-02-20,2027-03-07,Vacances d'hiver,vacances,barre,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise lundi 08/03/2027
+2027-02-21,2027-02-21,2e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
+2027-02-28,2027-02-28,3e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
+2027-03-07,2027-03-07,4e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche de Laetare (Ordo) ; ajouté le 2026-10-09
+2027-03-14,2027-03-14,5e dim. de Carême,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),Ordo ; ajouté le 2026-10-09
+2027-03-21,2027-03-21,Rameaux,liturgie,rouge,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche des Rameaux et de la Passion
+2027-03-21,2027-03-27,Semaine Sainte,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),"du dimanche des Rameaux au samedi saint ; ajouté à la demande de l'utilisateur le 2026-10-01 (l'ICS donnait 22→29/03, incluant Pâques : écart, Ordo retenu)"
+2027-03-25,2027-03-25,Jeudi saint,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),ajouté à la demande de l'utilisateur le 2026-10-01 (absent du modèle 2025-2026 - à arbitrer)
+2027-03-26,2027-03-26,Vendredi saint,liturgie,rouge,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),ajouté à la demande de l'utilisateur le 2026-10-01 (absent du modèle 2025-2026 - à arbitrer)
+2027-03-28,2027-03-28,Pâques,fete,jaune,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche
+2027-03-29,2027-03-29,Lundi de Pâques,ferie,jaune,oui,oui,Ordo 2026-2027 CEF + service-public.gouv.fr/F2405,lundi
+2027-04-05,2027-04-05,Annonciation,liturgie,jaune,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),reportée du 25/03 au lundi 5 avril (Semaine sainte / octave de Pâques)
+2027-04-17,2027-05-02,Vacances de printemps,vacances,barre,oui,oui,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise lundi 03/05/2027
+2027-05-01,2027-05-01,Fête du travail,ferie,jaune,oui,oui,service-public.gouv.fr/F2405,samedi
+2027-05-06,2027-05-06,Ascension,fete,jaune,oui,oui,Ordo 2026-2027 CEF + service-public.gouv.fr/F2405,jeudi
+2027-05-07,2027-05-07,Pont de l'Ascension,scolaire,gris,oui,non,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,pas de classe le vendredi ; affiché à la demande de l'utilisateur le 2026-10-01
+2027-05-08,2027-05-08,Victoire 1945,ferie,jaune,oui,oui,service-public.gouv.fr/F2405,samedi
+2027-05-16,2027-05-16,Pentecôte,fete,jaune,oui,oui,Ordo 2026-2027 CEF (liturgie.catholique.fr),dimanche
+2027-05-17,2027-05-17,Lundi de Pentecôte,ferie,jaune,oui,oui,service-public.gouv.fr/F2405,lundi
+2027-07-03,2027-09-01,Vacances d'été,vacances,barre,oui,non,data.education.gouv.fr (fr-en-calendrier-scolaire) Orléans-Tours zone B,reprise des élèves jeudi 02/09/2027
+2027-07-14,2027-07-14,Fête nationale,ferie,jaune,oui,oui,service-public.gouv.fr/F2405,mercredi
+2027-08-06,2027-08-06,Transfiguration,liturgie,jaune,oui,non,Ordo 2026-2027 CEF (liturgie.catholique.fr),fête du vendredi 6 août 2027 ; ajoutée à la demande de l'utilisateur le 2026-10-09
+2027-08-15,2027-08-15,Assomption,fete,jaune,oui,oui,Ordo 2026-2027 CEF + service-public.gouv.fr/F2405,dimanche

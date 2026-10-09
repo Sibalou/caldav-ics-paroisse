@@ -1,0 +1,66 @@
+motif,action,libelle,style,raison
+"^(\([^)]*\)\s*)?Messe\s*$",exclure,,,Messe courante (récurrent)
+^Adoration,exclure,,,Récurrent
+^Chapelet,exclure,,,Récurrent
+^Laudes,exclure,,,Récurrent
+^Autre\s*$,exclure,,,Décision utilisateur 2026-10-09 : jeudi 8h30 St Pantaléon (non précisé) non affiché
+^Temps de pri,exclure,,,Décision utilisateur 2026-10-09 : Prière des mères (lundi) non affichée
+^Groupe de pri,afficher,Groupe de prière,bleu,Décision utilisateur 2026-10-09 : à afficher
+^Office\s*$,exclure,,,Récurrent
+^concert,afficher,Concert,gris,Décision utilisateur 2026-10-09 : concerts réintégrés (doublons fusionnés)
+^Vacances,exclure,,,Remplacé par les dates officielles (Éducation nationale)
+^Fête de Notre-Dame de Velankanni,afficher,ND Velankanni (Tamoul),jaune,Décision utilisateur 2026-10-09 : fêtes de la communauté Tamoule à afficher
+^Fête de Saint Antoine,afficher,St Antoine (Tamoul),jaune,Décision utilisateur 2026-10-09 : fêtes de la communauté Tamoule à afficher
+^Fête de la divine miséricorde,afficher,Divine Miséricorde,jaune,Décision utilisateur 2026-10-09 : fête Enoria non reprise par les dates officielles
+^Fête (de la Toussaint|de l.armistice|du travail|de la victoire|nationale|de l.Assomption),exclure,,,Remplacé par les dates officielles (service-public / Ordo)
+^WE de l.Ascension,afficher,WE Ascension,bleu,Décision utilisateur 2026-10-09 : le WE (ICS 06→09/05) doit apparaître ; l'Ascension (jeudi) vient de l'Ordo
+^WE de Pentec,exclure,,,Remplacé par les dates officielles
+^Avent\s*$,exclure,,,Remplacé par l'Ordo CEF
+^Carême\s*$,exclure,,,Doublon avec le Mercredi des Cendres (Ordo CEF)
+^Mercredi des Cendres,exclure,,,Remplacé par l'Ordo CEF
+^Dimanche des Rameaux,exclure,,,Remplacé par l'Ordo CEF
+^Semaine Sainte,exclure,,,Remplacé par l'Ordo CEF (ICS : 22→29/03 inclut Pâques ; Ordo : du dimanche des Rameaux au samedi saint)
+^ass St Joseph,afficher,Ass St Joseph,bleu,Décision utilisateur 2026-10-09 : retiré des exclusions
+^Venez\s*&\s*Voyez,afficher,V & V,or,
+^Pr[ée]pa Mariage - Soirée #(\d),afficher,Prépa Mariage \1,orange,
+^Pr[ée]pa Mariage - WE de retraite,afficher,WE Prépa Mariage,orange,
+^Pr[ée]pa Mariage - Journée Sexualité,afficher,J. Sexualité,orange,
+^Casa\s*$,afficher,Casa,or,Casa = caté des grands ; libellé « Casa » seul (décision utilisateur 2026-10-01)
+^Case\s*$,afficher,Casa,or,ICS : « Case » = faute de frappe de Casa
+^Journée\s+Paroisse,afficher,Journée Paroisse,bleu,
+^Journée\s+Communautaire,afficher,Journée Communautaire,bleu,
+^Rentrée Cté,afficher,Rentrée Cté,bleu,
+^Eveil à la Foi,afficher,Éveil à la Foi,bleu,
+^WE Frat,afficher,WE Frat ccn,bleu,
+^WE des engagés,afficher,WE Engagés ccn,bleu,
+^Pentecôte Missionnaire,afficher,Pentecôte Miss. ccn,bleu,
+^WE Couples Missionnaires,afficher,WE Couples Miss.,bleu,
+^Semaine Epiphanie,afficher,Semaine Épiphanie,rose,Couleur propre (décision utilisateur 2026-10-09) : le bleu est déjà pris par d'autres événements
+^Rentrée diocésaine,afficher,Rentrée diocésaine,vert,
+^Rencontre des CMP,afficher,Rencontre CMP & CPAE,vert,
+^Conseil presbytéral,afficher,Conseil presbytéral,vert,
+^Retraite diocésaine,afficher,Retraite des prêtres,vert,
+^Rencontre des prêtres,afficher,Rencontre des prêtres,vert,
+^Messe Chrismale,afficher,Messe Chrismale,rouge,Décision utilisateur 2026-10-09 : même rouge que la Semaine sainte
+^Rencontre Chartres 2040,afficher,Chartres 2040,vert,
+^Formation\s+diocèse,afficher,Formation diocèse,vert,
+^Baptême,afficher,Baptême,or,Nom volontairement retiré (RGPD)
+^Mariage de,exclure,,,Décision utilisateur 2026-10-01 : lié à un couple, ne fait pas partie de l'agenda de la paroisse
+^Funérailles,exclure,,,Décision utilisateur 2026-10-01 : lié à une personne, ne fait pas partie de l'agenda de la paroisse
+^(1[èe]re|premi[èe]re) communion,afficher,1ère Communion,or,
+^Profession de foi,afficher,Profession de foi,or,
+^Visite du Pape,afficher,Visite du Pape,violet,Décision utilisateur 2026-10-01 (dates de l'ICS)
+^Père Pascal en Côte,afficher,Père Pascal en Côte d'Ivoire,violet,Décision utilisateur 2026-10-01 (dates de l'ICS)
+^Catéchuménat : (\d\S*) scrutin,afficher,\1 scrutin,or_fonce,Catéchuménat (décision utilisateur 2026-10-09 : à afficher)
+^Catéchuménat : Appel décisif,afficher,Appel décisif,or_fonce,Catéchuménat (2026-10-09)
+^Préparation Appel décisif,afficher,Prépa Appel décisif,or_fonce,Catéchuménat (2026-10-09)
+^WE des catéchumènes,afficher,WE catéchumènes,or_fonce,Catéchuménat (2026-10-09)
+^Cat[ée]ch\w* ?: Formation à l'Eucharistie,afficher,Formation Eucharistie,or_fonce,Catéchuménat (2026-10-09) ; ICS : faute « Catéchumat »
+^Formation des accompagnateurs,afficher,Formation accompagnateurs,or_fonce,Catéchuménat (2026-10-09)
+^(Cat[ée]ch\w* - )?Repas de fin d'année,afficher,Repas catéchuménat,or_fonce,Catéchuménat (2026-10-09)
+^Repas de fin d'année du cat,afficher,Repas catéchuménat,or_fonce,Catéchuménat (2026-10-09)
+^(R[ée]union|Rencontre) du cat[ée]ch,afficher,Catéchuménat,or_fonce,Catéchuménat (2026-10-09) ; inclut les fautes de frappe de l'ICS
+^Catéchuménat : (réunion|Temps) de préparation,afficher,Catéchuménat,or_fonce,Catéchuménat (2026-10-09)
+^Catéchisme,afficher,Catéchisme,or,Décision utilisateur 2026-10-09 : à afficher
+^Messe des défunts,afficher,Messe des défunts,bleu,Décision utilisateur 2026-10-09 : à afficher
+^Semaine missionnaire,afficher,Semaine missionnaire,bleu,Décision utilisateur 2026-10-09 : à afficher

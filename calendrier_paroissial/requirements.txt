@@ -1,0 +1,4 @@
+icalendar>=5.0.13
+openpyxl>=3.1
+requests>=2.31
+pytest>=8.0
