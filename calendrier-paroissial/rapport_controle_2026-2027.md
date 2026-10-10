@@ -12,6 +12,7 @@
 | 19/09/2026 | Baptême | ics |
 | 19/09/2026 | ND Velankanni (Tamoul) | ics |
 | 20/09/2026 | Journée Communautaire | ics |
+| 22/09/2026 | Rentrée District CCN + Kion | ics |
 | 25/09/2026 | Visite du Pape (→ 28/09) | ics |
 | 26/09/2026 | V & V | ics |
 | 27/09/2026 | Baptême | ics |
@@ -87,6 +88,7 @@
 | 03/01/2027 | Semaine Épiphanie (→ 08/01) | ics |
 | 05/01/2027 | Groupe de prière | ics |
 | 05/01/2027 | Journée d'adoration | ics |
+| 08/01/2027 | Rencontre CCN + Kion | ics |
 | 09/01/2027 | CMP | ics |
 | 09/01/2027 | Prépa Appel décisif | ics |
 | 10/01/2027 | Éveil à la Foi | ics |
@@ -147,6 +149,7 @@
 | 27/03/2027 | Catéchuménat | ics |
 | 28/03/2027 | Pâques | officiel |
 | 29/03/2027 | Lundi de Pâques | officiel |
+| 29/03/2027 | Lundi de Pâques CCN + Kion + Cana | ics |
 | 30/03/2027 | Groupe de prière | ics |
 | 30/03/2027 | Journée d'adoration | ics |
 | 02/04/2027 | Nuit d'adoration | ics |
@@ -245,6 +248,7 @@
 |---|---|
 | Equipe pilote | 08/09/2026, 06/10/2026 |
 | Rentrée Kion | 13/09/2026 |
+| Rentrée District CCN + Kion | 22/09/2026 |
 | Journée d'adoration | 06/10/2026, 20/10/2026, 27/10/2026, 03/11/2026, 10/11/2026, 17/11/2026 … |
 | CMP | 10/10/2026, 09/01/2027, 23/01/2027, 06/02/2027, 13/03/2027, 20/03/2027 … |
 | Nuit d'adoration | 06/11/2026, 04/12/2026, 01/01/2027, 05/02/2027, 05/03/2027, 02/04/2027 … |
@@ -253,6 +257,8 @@
 | CMP avec Chartres 2040 | 28/11/2026 |
 | Soirée réconciliation | 08/12/2026, 16/03/2027 |
 | CMP avec Ecole des témoins | 12/12/2026 |
+| Rencontre CCN + Kion | 08/01/2027 |
+| Lundi de Pâques CCN + Kion + Cana | 29/03/2027 |
 | Fête de départ de la paroisse | 27/06/2027 |
 
 ## 4. Écarts ICS / sources officielles
