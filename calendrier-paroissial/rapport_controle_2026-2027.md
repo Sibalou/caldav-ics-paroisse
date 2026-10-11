@@ -300,4 +300,4 @@
 | Remplacé par l'Ordo CEF | `^Dimanche des Rameaux` | 1 |
 | Remplacé par les dates officielles | `^WE de Pentec` | 1 |
 
-_Événements ICS hors de la saison : 764._
+_Événements ICS hors de la saison : 762._
