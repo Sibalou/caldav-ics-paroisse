@@ -14,6 +14,7 @@
 | 20/09/2026 | Journée Communautaire | ics |
 | 22/09/2026 | Rentrée District CCN + Kion | ics |
 | 25/09/2026 | Visite du Pape (→ 28/09) | ics |
+| 26/09/2026 | Messe pour les défunts | ics |
 | 26/09/2026 | V & V | ics |
 | 27/09/2026 | Baptême | ics |
 | 29/09/2026 | Groupe de prière | ics |
@@ -38,11 +39,13 @@
 | 20/10/2026 | Père Pascal en Côte d'Ivoire (→ 20/11) | ics |
 | 23/10/2026 | Casa | ics |
 | 27/10/2026 | Journée d'adoration | ics |
+| 31/10/2026 | Messe pour les défunts | ics |
 | 01/11/2026 | Toussaint | officiel |
 | 02/11/2026 | Défunts | officiel |
 | 02/11/2026 | Messe des défunts | ics |
 | 03/11/2026 | Groupe de prière | ics |
 | 03/11/2026 | Journée d'adoration | ics |
+| 05/11/2026 | Reunion Paroissiale Chartres 2040 | ics |
 | 06/11/2026 | Casa | ics |
 | 06/11/2026 | Nuit d'adoration | ics |
 | 07/11/2026 | CMP avec Florence Metayer | ics |
@@ -64,6 +67,7 @@
 | 24/11/2026 | Journée d'adoration | ics |
 | 27/11/2026 | Casa | ics |
 | 28/11/2026 | CMP avec Chartres 2040 | ics |
+| 28/11/2026 | Messe pour les défunts | ics |
 | 29/11/2026 | 1er dim. de l'Avent | officiel |
 | 01/12/2026 | Groupe de prière | ics |
 | 01/12/2026 | Journée d'adoration | ics |
@@ -82,6 +86,7 @@
 | 20/12/2026 | 4e dim. de l'Avent | officiel |
 | 22/12/2026 | Journée d'adoration | ics |
 | 25/12/2026 | Noël | officiel |
+| 26/12/2026 | Messe pour les défunts | ics |
 | 29/12/2026 | Journée d'adoration | ics |
 | 01/01/2027 | Jour de l'an | officiel |
 | 01/01/2027 | Nuit d'adoration | ics |
@@ -100,6 +105,7 @@
 | 26/01/2027 | Groupe de prière | ics |
 | 26/01/2027 | Journée d'adoration | ics |
 | 28/01/2027 | Prépa Mariage 1 | ics |
+| 30/01/2027 | Messe pour les défunts | ics |
 | 30/01/2027 | WE Engagés ccn (→ 01/02) | ics |
 | 30/01/2027 | WE catéchumènes (→ 31/01) | ics |
 | 02/02/2027 | Groupe de prière | ics |
@@ -119,6 +125,7 @@
 | 21/02/2027 | 2e dim. de Carême | officiel |
 | 21/02/2027 | Retraite des prêtres (→ 26/02) | ics |
 | 23/02/2027 | Journée d'adoration | ics |
+| 27/02/2027 | Messe pour les défunts | ics |
 | 28/02/2027 | 1er scrutin | ics |
 | 28/02/2027 | 3e dim. de Carême | officiel |
 | 02/03/2027 | Journée d'adoration | ics |
@@ -147,6 +154,7 @@
 | 25/03/2027 | Jeudi saint | officiel |
 | 26/03/2027 | Vendredi saint | officiel |
 | 27/03/2027 | Catéchuménat | ics |
+| 27/03/2027 | Messe pour les défunts | ics |
 | 28/03/2027 | Pâques | officiel |
 | 29/03/2027 | Lundi de Pâques | officiel |
 | 29/03/2027 | Lundi de Pâques CCN + Kion + Cana | ics |
@@ -167,6 +175,7 @@
 | 13/04/2027 | Journée d'adoration | ics |
 | 15/04/2027 | Prépa Mariage 3 | ics |
 | 20/04/2027 | Journée d'adoration | ics |
+| 24/04/2027 | Messe pour les défunts | ics |
 | 27/04/2027 | Journée d'adoration | ics |
 | 01/05/2027 | Fête du travail | officiel |
 | 04/05/2027 | CMP | ics |
@@ -193,6 +202,7 @@
 | 25/05/2027 | Journée d'adoration | ics |
 | 27/05/2027 | V & V | ics |
 | 29/05/2027 | Concert | ics |
+| 29/05/2027 | Messe pour les défunts | ics |
 | 31/05/2027 | Journée Paroisse (→ 01/06) | ics |
 | 01/06/2027 | Groupe de prière | ics |
 | 01/06/2027 | Journée d'adoration | ics |
@@ -209,6 +219,7 @@
 | 19/06/2027 | St Antoine (Tamoul) | ics |
 | 22/06/2027 | Groupe de prière | ics |
 | 22/06/2027 | Journée d'adoration | ics |
+| 26/06/2027 | Messe pour les défunts | ics |
 | 27/06/2027 | Fête de départ de la paroisse | ics |
 | 29/06/2027 | Journée d'adoration | ics |
 | 02/07/2027 | Nuit d'adoration | ics |
@@ -217,8 +228,10 @@
 | 06/07/2027 | Journée d'adoration | ics |
 | 10/07/2027 | CMP | ics |
 | 14/07/2027 | Fête nationale | officiel |
+| 31/07/2027 | Messe pour les défunts | ics |
 | 06/08/2027 | Transfiguration | officiel |
 | 15/08/2027 | Assomption | officiel |
+| 28/08/2027 | Messe pour les défunts | ics |
 
 ## 2. Attendus (calendrier 2025-2026) non trouvés cette année
 
@@ -249,8 +262,10 @@
 | Equipe pilote | 08/09/2026, 06/10/2026 |
 | Rentrée Kion | 13/09/2026 |
 | Rentrée District CCN + Kion | 22/09/2026 |
+| Messe pour les défunts | 26/09/2026, 31/10/2026, 28/11/2026, 26/12/2026, 30/01/2027, 27/02/2027 … |
 | Journée d'adoration | 06/10/2026, 20/10/2026, 27/10/2026, 03/11/2026, 10/11/2026, 17/11/2026 … |
 | CMP | 10/10/2026, 09/01/2027, 23/01/2027, 06/02/2027, 13/03/2027, 20/03/2027 … |
+| Reunion Paroissiale Chartres 2040 | 05/11/2026 |
 | Nuit d'adoration | 06/11/2026, 04/12/2026, 01/01/2027, 05/02/2027, 05/03/2027, 02/04/2027 … |
 | CMP avec Florence Metayer | 07/11/2026 |
 | Equipe Pilote | 17/11/2026 |
@@ -283,13 +298,13 @@
 
 | Règle (raison) | Motif | Nombre |
 |---|---|---|
-| Messe courante (récurrent) | `^(\([^)]*\)\s*)?Messe\s*$` | 280 |
-| Récurrent | `^Adoration` | 177 |
+| Messe courante (récurrent) | `^(\([^)]*\)\s*)?Messe\s*$` | 279 |
+| Récurrent | `^Adoration` | 179 |
 | Récurrent | `^Chapelet` | 116 |
 | Récurrent | `^Laudes` | 84 |
 | Décision utilisateur 2026-10-09 : jeudi 8h30 St Pantaléon (non précisé) non affiché | `^Autre\s*$` | 42 |
 | Décision utilisateur 2026-10-09 : Prière des mères (lundi) non affichée | `^Temps de pri` | 41 |
-| Décision utilisateur 2026-10-01 : lié à une personne | `^Funérailles` | 14 |
+| Décision utilisateur 2026-10-01 : lié à une personne | `^Funérailles` | 15 |
 | Décision utilisateur 2026-10-01 : lié à un couple | `^Mariage de` | 7 |
 | Remplacé par les dates officielles (service-public / Ordo) | `^Fête (de la Toussaint|de l.armistice|du travail|de la victoire|nationale|de l.Assomption)` | 6 |
 | Remplacé par les dates officielles (Éducation nationale) | `^Vacances` | 4 |
@@ -300,4 +315,4 @@
 | Remplacé par l'Ordo CEF | `^Dimanche des Rameaux` | 1 |
 | Remplacé par les dates officielles | `^WE de Pentec` | 1 |
 
-_Événements ICS hors de la saison : 762._
+_Événements ICS hors de la saison : 746._
