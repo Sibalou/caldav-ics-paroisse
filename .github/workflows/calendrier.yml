@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   calendrier:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - name: Heure de Paris
@@ -45,11 +45,11 @@ jobs:
 
       - name: Checkout (code)
         if: steps.heure.outputs.go == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Checkout gh-pages (ICS publié)
         if: steps.heure.outputs.go == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: pages
@@ -82,7 +82,7 @@ jobs:
       - name: Déjà généré pour cette empreinte ?
         if: steps.heure.outputs.go == 'true'
         id: cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .marqueur
           key: calendrier-${{ steps.saison.outputs.annee }}-${{ steps.empreinte.outputs.hash }}
@@ -103,7 +103,7 @@ jobs:
 
       - name: Setup Python
         if: steps.decision.outputs.generer == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: "pip"
