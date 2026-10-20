@@ -1,12 +1,12 @@
 motif,action,libelle,style,raison
 "^(\([^)]*\)\s*)?Messe\s*$",exclure,,,Messe courante (récurrent)
-^(Journ[ée]e|Nuit) d.adoration,afficher,\1 d'adoration,lavande,Décision utilisateur 2026-10-20 : couleur propre (Nuit d'adoration regroupée avec la Journée)
+^Journ[ée]e d.adoration,exclure,,,Décision utilisateur 2026-10-20 : retirée du calendrier (trop fréquente)
 ^Adoration,exclure,,,Récurrent
 ^Chapelet,exclure,,,Récurrent
 ^Laudes,exclure,,,Récurrent
 ^Autre\s*$,exclure,,,Décision utilisateur 2026-10-09 : jeudi 8h30 St Pantaléon (non précisé) non affiché
 ^Temps de pri,exclure,,,Décision utilisateur 2026-10-09 : Prière des mères (lundi) non affichée
-^Groupe de pri,afficher,Groupe de prière,saumon,Décision utilisateur 2026-10-09 : à afficher
+^Groupe de pri,exclure,,,Décision utilisateur 2026-10-20 : retiré du calendrier (revient sur la décision du 2026-10-09)
 ^Office\s*$,exclure,,,Récurrent
 ^concert,afficher,Concert,turquoise,Décision utilisateur 2026-10-09 : concerts réintégrés (doublons fusionnés)
 ^Vacances,exclure,,,Remplacé par les dates officielles (Éducation nationale)
@@ -29,7 +29,7 @@ motif,action,libelle,style,raison
 ^Casa\s*$,afficher,Casa,fuchsia,Casa = caté des grands ; libellé « Casa » seul (décision utilisateur 2026-10-01)
 ^Case\s*$,afficher,Casa,fuchsia,ICS : « Case » = faute de frappe de Casa
 ^Journée\s+Paroisse,afficher,Journée Paroisse,olive,
-^Journée\s+Communautaire,afficher,Journée Communautaire,olive,
+^Journée\s+Communautaire,afficher,Journée Communautaire,bleu,Décision utilisateur 2026-10-20 : événement paroissial
 ^Rentrée Cté,afficher,Rentrée Cté,olive,
 ^Eveil à la Foi,afficher,Éveil à la Foi,cyan,
 ^WE Frat,afficher,WE Frat ccn,olive,

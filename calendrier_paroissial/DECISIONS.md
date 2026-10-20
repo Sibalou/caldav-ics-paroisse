@@ -71,21 +71,21 @@ Une couleur propre par type d'événement, teintes harmonisées (écart perceptu
 | Visite du Pape | `ardoise` | 2B2D42 |
 | Concerts | `turquoise` | 2A9D8F |
 | Rentrée scolaire, pont de l'Ascension | `bleu_clair` | C6D9F1 |
-| **CCN, Kion, Cté** (WE Frat, WE engagés, Pentecôte missionnaire, Rentrée Cté, Journée Paroisse, Journée Communautaire, tout titre contenant CCN / Kion / Cté) | `olive` | 7B8F2A |
+| **CCN, Kion, Cté** (WE Frat, WE engagés, Pentecôte missionnaire, Rentrée Cté, Journée Paroisse, tout titre contenant CCN / Kion / Cté) | `olive` | 7B8F2A |
 | **CMP et Équipe pilote** | `menthe` | A8D672 |
 | Reste du diocèse | `vert` | 3E8E5A |
 | Éveil à la Foi | `cyan` | 22C3DB |
 | Casa | `fuchsia` | E85D9C |
 | Venez & Voyez | `brun` | 7A4E2D |
-| Journée et Nuit d'adoration | `lavande` | D0B8F0 |
-| Groupe de prière | `saumon` | F7BFA0 |
 | 1ère communion, profession de foi, catéchisme | `or` | D79A3A |
 | Catéchuménat | `or_fonce` | 9C6A12 |
 | Préparation au mariage | `orange` | EE7B4D |
 | Vie paroissiale (défaut) | `bleu` | 4F8FD8 |
 | Semaine Épiphanie | `rose` | F4B6C2 |
 
+- **Journée d'adoration et Groupe de prière retirés** du calendrier (trop fréquents ; le Groupe de prière revient sur la décision du 2026-10-09). La Nuit d'adoration reste affichée par défaut (bleu).
+- **Journée Communautaire** : événement paroissial, en bleu.
 - **Baptêmes exclus** (comme mariages et funérailles) : liés à une personne.
 - « Kion » : aucun titre dédié dans l'ICS ; la règle générique reprend le titre tel quel (hors « @lieu »).
-- `sable`, `ciel` et `rose` ne sont réservées à aucun type : elles servent à la recoloration automatique des événements longs (`COULEURS_ALT`).
+- `lavande`, `saumon`, `sable`, `ciel` et `rose` ne sont réservées à aucun type : elles servent à la recoloration automatique des événements longs (`COULEURS_ALT`).
 - Remplace la palette précédente (Avent/Carême en rouge, violet du Pape et du Père Pascal, gris partagé, jaune des fêtes Enoria inchangé en tant que fête).
