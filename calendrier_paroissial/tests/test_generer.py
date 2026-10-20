@@ -19,11 +19,28 @@ def classer(titre):
 
 
 def test_noms_jamais_ecrits():
-    action, lib = classer("Baptême de Salomé MOUNIER")
-    assert (action, lib) == ("afficher", "Baptême")
-    # mariages et funérailles : hors agenda paroissial (décision 2026-10-01)
+    # baptêmes, mariages et funérailles : liés à une personne, hors agenda paroissial (décisions 2026-10-01 et 2026-10-20)
+    assert classer("Baptême de Salomé MOUNIER")[0] == "exclure"
     assert classer("Mariage de M. X et Mme Y")[0] == "exclure"
     assert classer("Funérailles de M. Georges  THIEBAUT")[0] == "exclure"
+
+
+def style_de(titre):
+    for motif, r in g.lire_regles(HERE / "regles.csv"):
+        if motif.search(titre):
+            return r["style"]
+
+
+def test_couleurs_par_type_2026_10_20():
+    for t in ("CMP", "CMP avec Chartres 2040", "Equipe Pilote", "Equipe pilote", "Rencontre des CMP & CPAE du Diocèse"):
+        assert style_de(t) == "menthe", t
+    for t in ("Rencontre CCN + Kion", "Rentrée Kion", "Rencontre Cté/Kion", "Rentrée Cté", "Reunion CCN",
+              "Journée Paroisse Cté #1", "Journée Communautaire", "Lundi de Pâques CCN + Kion + Cana"):
+        assert style_de(t) == "olive", t
+    assert style_de("Eveil à la Foi") == "cyan"
+    assert style_de("Journée d'adoration") == "lavande" and style_de("Nuit d'adoration") == "lavande"
+    assert style_de("Groupe de prière") == "saumon" and style_de("Casa") == "fuchsia"
+    assert style_de("Père Pascal en Côte d'Ivoire") == "gris"
 
 
 def test_decisions_2026_10_01():

@@ -59,7 +59,7 @@ Les décisions prises (ce qui est affiché, exclu, ou remplacé) sont consignée
 - Un événement **multi-jours** est **ancré en haut ou en bas** de la case pour que ses blocs se rejoignent d'un jour à l'autre et fusionnent, même quand d'autres événements s'intercalent (ex. Visite du Pape).
 - Le texte n'est écrit **qu'une fois par mois** (dans le plus grand bloc du mois) : ailleurs, la couleur suffit ; un événement à cheval sur deux mois est donc nommé dans chaque mois.
 - Chaque bloc est entouré d'un trait fin noir.
-- **Couleurs** : un événement long (5 jours et plus) ne partage pas sa couleur avec un événement simultané ; il est recoloré (rose, or foncé, orange…) et signalé au rapport.
+- **Couleurs** : un événement long (5 jours et plus) ne partage pas sa couleur avec un événement simultané ; il est recoloré (sable, ciel, rose) et signalé au rapport.
 - **Périodes** (Avent, Carême) : fond rouge sur les colonnes jour/numéro ; chaque dimanche porte son libellé (« 1er dim. de l'Avent »…). Légende en ligne 2.
 - **Plus de 3** : les derniers sont regroupés dans la 3e ligne (signalé dans le rapport).
 
@@ -78,7 +78,7 @@ Dans un ICS, la fin (`DTEND`) d'un événement « journée entière » est **exc
 
 ## Ajouter le KT ou un événement ponctuel
 
-Éditer `ajouts_manuels.csv` (colonnes `date_debut,date_fin,libelle,style`), puis relancer. Styles : `jaune`, `jaune_pale`, `rouge`, `rouge_vif`, `or`, `or_fonce`, `orange`, `bleu`, `bleu_clair`, `vert`, `violet`, `gris`, `gris_fonce`, `rose`, `lavande`, `turquoise`, `kaki`, `marine`, `fuchsia`, `brun`, `saumon`, `olive`.
+Éditer `ajouts_manuels.csv` (colonnes `date_debut,date_fin,libelle,style`), puis relancer. Styles : `violet`, `rouge`, `jaune`, `jaune_pale`, `bleu`, `olive` (CCN / Kion / Cté), `cyan`, `saumon`, `lavande`, `turquoise`, `or`, `or_fonce`, `fuchsia`, `brun`, `orange`, `vert`, `menthe` (CMP), `gris`, `ardoise`, `bleu_clair`, `rose`, `sable`, `ciel` (palette par type : voir [`DECISIONS.md`](DECISIONS.md)).
 
 ```csv
 date_debut,date_fin,libelle,style

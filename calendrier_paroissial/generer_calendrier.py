@@ -36,23 +36,29 @@ POLICE = "Calibri"
 
 # style -> (fond, texte)
 STYLES = {
-    "jaune": ("FFFF00", "000000"), "rouge": ("C00000", "FFFFFF"),
-    "rouge_vif": ("FF0000", "FFFFFF"), "or": ("FFC000", "000000"),
-    "or_fonce": ("BF9000", "000000"), "orange": ("ED7D31", "000000"),
-    "bleu": ("00B0F0", "000000"), "vert": ("00B050", "000000"),
-    "violet": ("7030A0", "FFFFFF"), "gris": ("D0CECE", "000000"),
-    "rose": ("F4B6C2", "000000"), "lavande": ("CDB4E8", "000000"),
-    "turquoise": ("00B0A0", "000000"), "kaki": ("A9D18E", "000000"),
-    "marine": ("2F5597", "FFFFFF"),
-    "jaune_pale": ("FFE699", "000000"), "gris_fonce": ("A6A6A6", "000000"),
-    "bleu_clair": ("8EAADB", "000000"), "fuchsia": ("D6458F", "FFFFFF"),
-    "brun": ("8B5A2B", "FFFFFF"), "saumon": ("F4A582", "000000"),
-    "olive": ("7F7F00", "FFFFFF"),
+    # liturgie
+    "violet": ("6A4C93", "FFFFFF"), "rouge": ("A61E2E", "FFFFFF"),
+    "jaune": ("FFD23F", "000000"), "jaune_pale": ("FFF1B8", "000000"),
+    # vie de la paroisse et de ses communautés
+    "bleu": ("4F8FD8", "FFFFFF"), "olive": ("7B8F2A", "FFFFFF"),
+    "cyan": ("22C3DB", "000000"), "saumon": ("F7BFA0", "000000"),
+    "lavande": ("D0B8F0", "000000"), "turquoise": ("2A9D8F", "FFFFFF"),
+    # formation et sacrements
+    "or": ("D79A3A", "000000"), "or_fonce": ("9C6A12", "FFFFFF"),
+    "fuchsia": ("E85D9C", "FFFFFF"), "brun": ("7A4E2D", "FFFFFF"),
+    "orange": ("EE7B4D", "000000"),
+    # diocèse
+    "vert": ("3E8E5A", "FFFFFF"), "menthe": ("A8D672", "000000"),
+    # divers
+    "gris": ("9AA0A6", "000000"), "ardoise": ("2B2D42", "FFFFFF"),
+    "bleu_clair": ("C6D9F1", "000000"), "rose": ("F4B6C2", "000000"),
+    # réservées à la recoloration automatique des événements longs
+    "sable": ("E2D2A8", "000000"), "ciel": ("8FD0E6", "000000"),
 }
 # Couleurs de remplacement pour un événement long dont la couleur est déjà prise par un événement simultané
 # (uniquement des couleurs non attribuées à un type : voir la palette dans DECISIONS.md)
-COULEURS_ALT = ["rose", "or_fonce", "orange", "vert", "or", "bleu"]
-TEINTE_PERIODE = "7030A0"  # même violet que les dimanches de l'Avent / du Carême
+COULEURS_ALT = ["sable", "ciel", "rose"]
+TEINTE_PERIODE = "6A4C93"  # même violet que les dimanches de l'Avent / du Carême
 SEUIL_LONG = 4  # écart en jours (début→fin) à partir duquel un événement est « long » (5 jours et plus)
 GRIS_DIMANCHE = "D9D9D9"
 BLEU_VACANCES = "8EAADB"
@@ -67,7 +73,7 @@ REFERENCE_2025 = [
     ("J. Sexualité", r"^J\. Sexualité", ""),
     ("S. Réconciliation", r"Réconciliation", ""),
     ("1ère Communion", r"1ère Communion", ""),
-    ("Dim. Baptême / Messe de Requiem", r"^Baptême", "Baptêmes explicites de l'ICS uniquement (funérailles non affichées, décision 2026-10-01)"),
+    ("Dim. Baptême / Messe de Requiem", r"^Baptême", "Exclus depuis le 2026-10-20 (comme les mariages et funérailles)"),
     ("Journée Paroisse", r"^Journée Paroisse", ""),
     ("Installation du Curé", r"Installation", "Aucune cette année (utilisateur, 2026-10-01)"),
     ("Rentrée Paroissiale", r"^Rentrée Paroissiale", "Pas d'équivalence (décision utilisateur 2026-10-01) : « Rentrée Cté » est affichée telle qu'indiquée dans l'ICS"),
@@ -206,7 +212,7 @@ def appliquer_regles(evts_ics, regles, debut_saison, fin_saison, rapport) -> lis
             if r["action"] == "exclure":
                 rapport.exclus[(r["raison"], r["motif"])] += 1
             else:
-                res.append(Evt(d1, d2, m.expand(r["libelle"]), r["style"], "ics"))
+                res.append(Evt(d1, d2, m.expand(r["libelle"]).strip(), r["style"], "ics"))
             break
         else:
             if nom_possible(titre):

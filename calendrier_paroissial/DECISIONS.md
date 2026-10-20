@@ -59,30 +59,33 @@ et `ajouts_manuels.csv` (KT, etc.). Ne rien corriger à la main dans l'Excel : m
 - Fêtes Enoria affichées (Tamoul, Divine Miséricorde) : en jaune (demande utilisateur 2026-10-09).
 
 ## 2026-10-20 — Palette par type (tri visuel)
-Une couleur propre par type d'événement (modifier `regles.csv`, `dates_officielles_*.csv`, `STYLES` du script) :
+Une couleur propre par type d'événement, teintes harmonisées (écart perceptuel ΔE ≥ 15 entre deux types). Modifier `regles.csv`, `dates_officielles_*.csv` ou `STYLES` du script, puis relancer.
 
 | Type | Style | Fond |
 |---|---|---|
-| Avent, Carême (fond des jours jusqu'au 27/03), dimanches Avent/Carême, Cendres, Défunts | `violet` | 7030A0 |
-| Semaine sainte, Rameaux, Jeudi/Vendredi saint, Messe chrismale | `rouge` | C00000 |
-| Fêtes liturgiques (Noël, Pâques, Ascension, Pentecôte, Toussaint, Assomption, Christ Roi, Transfiguration, Annonciation, fêtes tamoules, Divine Miséricorde) | `jaune` | FFFF00 |
-| Fériés civils | `jaune_pale` | FFE699 |
-| Père Pascal en Côte d'Ivoire | `gris_fonce` | A6A6A6 |
-| Visite du Pape | `marine` | 2F5597 |
-| Concerts | `turquoise` | 00B0A0 |
-| Rentrée scolaire, pont de l'Ascension | `bleu_clair` | 8EAADB |
-| Casa | `fuchsia` | D6458F |
-| Venez & Voyez | `brun` | 8B5A2B |
-| Rencontre CMP & CPAE | `kaki` | A9D18E |
-| Journée d'adoration | `lavande` | CDB4E8 |
-| Groupe de prière | `saumon` | F4A582 |
-| CCN et Kion (même couleur) | `olive` | 7F7F00 |
-| Reste du diocèse | `vert` | 00B050 |
-| Sacrements, catéchisme | `or` | FFC000 |
-| Catéchuménat | `or_fonce` | BF9000 |
-| Préparation au mariage | `orange` | ED7D31 |
-| Vie paroissiale (dont Éveil à la Foi) | `bleu` | 00B0F0 |
+| Avent, Carême (fond des jours jusqu'au 27/03), dimanches Avent/Carême, Cendres, Défunts | `violet` | 6A4C93 |
+| Semaine sainte, Rameaux, Jeudi/Vendredi saint, Messe chrismale | `rouge` | A61E2E |
+| Fêtes liturgiques (Noël, Pâques, Ascension, Pentecôte, Toussaint, Assomption, Christ Roi, Transfiguration, Annonciation, fêtes tamoules, Divine Miséricorde) | `jaune` | FFD23F |
+| Fériés civils | `jaune_pale` | FFF1B8 |
+| Père Pascal en Côte d'Ivoire | `gris` | 9AA0A6 |
+| Visite du Pape | `ardoise` | 2B2D42 |
+| Concerts | `turquoise` | 2A9D8F |
+| Rentrée scolaire, pont de l'Ascension | `bleu_clair` | C6D9F1 |
+| **CCN, Kion, Cté** (WE Frat, WE engagés, Pentecôte missionnaire, Rentrée Cté, Journée Paroisse, Journée Communautaire, tout titre contenant CCN / Kion / Cté) | `olive` | 7B8F2A |
+| **CMP et Équipe pilote** | `menthe` | A8D672 |
+| Reste du diocèse | `vert` | 3E8E5A |
+| Éveil à la Foi | `cyan` | 22C3DB |
+| Casa | `fuchsia` | E85D9C |
+| Venez & Voyez | `brun` | 7A4E2D |
+| Journée et Nuit d'adoration | `lavande` | D0B8F0 |
+| Groupe de prière | `saumon` | F7BFA0 |
+| 1ère communion, profession de foi, catéchisme | `or` | D79A3A |
+| Catéchuménat | `or_fonce` | 9C6A12 |
+| Préparation au mariage | `orange` | EE7B4D |
+| Vie paroissiale (défaut) | `bleu` | 4F8FD8 |
+| Semaine Épiphanie | `rose` | F4B6C2 |
 
-- Remplace : Avent/Carême en rouge, violet du Pape et du Père Pascal, gris partagé, jaune des fêtes Enoria (reste jaune vif).
-- « Kion » : aucun titre connu dans l'ICS ; règle générique sur le mot « Kion » (titre repris tel quel hors « @lieu »), idem pour tout titre contenant « ccn ». À relire dans le rapport (section 3).
-- `COULEURS_ALT` (recoloration des événements longs) ne contient plus que des couleurs non attribuées à un type.
+- **Baptêmes exclus** (comme mariages et funérailles) : liés à une personne.
+- « Kion » : aucun titre dédié dans l'ICS ; la règle générique reprend le titre tel quel (hors « @lieu »).
+- `sable`, `ciel` et `rose` ne sont réservées à aucun type : elles servent à la recoloration automatique des événements longs (`COULEURS_ALT`).
+- Remplace la palette précédente (Avent/Carême en rouge, violet du Pape et du Père Pascal, gris partagé, jaune des fêtes Enoria inchangé en tant que fête).
