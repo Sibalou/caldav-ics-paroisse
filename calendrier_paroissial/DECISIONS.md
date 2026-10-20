@@ -57,3 +57,32 @@ et `ajouts_manuels.csv` (KT, etc.). Ne rien corriger à la main dans l'Excel : m
 - WE de l'Ascension : affiché (ICS 06→09/05/2027, « WE Ascension »). WE de Pentecôte (15→17/05) toujours exclu : mêmes dates que « Pentecôte Miss. ccn ».
 - Fêtes Enoria affichées : Notre-Dame de Velankanni (19/09/2026) et Saint Antoine (19/06/2027) de la communauté Tamoule, Divine Miséricorde (04/04/2027) ; les autres « Fête… » d'Enoria restent remplacées par les dates officielles. Transfiguration (06/08/2027, Ordo) ajoutée.
 - Fêtes Enoria affichées (Tamoul, Divine Miséricorde) : en jaune (demande utilisateur 2026-10-09).
+
+## 2026-10-20 — Palette par type (tri visuel)
+Une couleur propre par type d'événement (modifier `regles.csv`, `dates_officielles_*.csv`, `STYLES` du script) :
+
+| Type | Style | Fond |
+|---|---|---|
+| Avent, Carême (fond des jours jusqu'au 27/03), dimanches Avent/Carême, Cendres, Défunts | `violet` | 7030A0 |
+| Semaine sainte, Rameaux, Jeudi/Vendredi saint, Messe chrismale | `rouge` | C00000 |
+| Fêtes liturgiques (Noël, Pâques, Ascension, Pentecôte, Toussaint, Assomption, Christ Roi, Transfiguration, Annonciation, fêtes tamoules, Divine Miséricorde) | `jaune` | FFFF00 |
+| Fériés civils | `jaune_pale` | FFE699 |
+| Père Pascal en Côte d'Ivoire | `gris_fonce` | A6A6A6 |
+| Visite du Pape | `marine` | 2F5597 |
+| Concerts | `turquoise` | 00B0A0 |
+| Rentrée scolaire, pont de l'Ascension | `bleu_clair` | 8EAADB |
+| Casa | `fuchsia` | D6458F |
+| Venez & Voyez | `brun` | 8B5A2B |
+| Rencontre CMP & CPAE | `kaki` | A9D18E |
+| Journée d'adoration | `lavande` | CDB4E8 |
+| Groupe de prière | `saumon` | F4A582 |
+| CCN et Kion (même couleur) | `olive` | 7F7F00 |
+| Reste du diocèse | `vert` | 00B050 |
+| Sacrements, catéchisme | `or` | FFC000 |
+| Catéchuménat | `or_fonce` | BF9000 |
+| Préparation au mariage | `orange` | ED7D31 |
+| Vie paroissiale (dont Éveil à la Foi) | `bleu` | 00B0F0 |
+
+- Remplace : Avent/Carême en rouge, violet du Pape et du Père Pascal, gris partagé, jaune des fêtes Enoria (reste jaune vif).
+- « Kion » : aucun titre connu dans l'ICS ; règle générique sur le mot « Kion » (titre repris tel quel hors « @lieu »), idem pour tout titre contenant « ccn ». À relire dans le rapport (section 3).
+- `COULEURS_ALT` (recoloration des événements longs) ne contient plus que des couleurs non attribuées à un type.

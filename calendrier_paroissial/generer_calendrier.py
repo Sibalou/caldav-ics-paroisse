@@ -44,10 +44,15 @@ STYLES = {
     "rose": ("F4B6C2", "000000"), "lavande": ("CDB4E8", "000000"),
     "turquoise": ("00B0A0", "000000"), "kaki": ("A9D18E", "000000"),
     "marine": ("2F5597", "FFFFFF"),
+    "jaune_pale": ("FFE699", "000000"), "gris_fonce": ("A6A6A6", "000000"),
+    "bleu_clair": ("8EAADB", "000000"), "fuchsia": ("D6458F", "FFFFFF"),
+    "brun": ("8B5A2B", "FFFFFF"), "saumon": ("F4A582", "000000"),
+    "olive": ("7F7F00", "FFFFFF"),
 }
 # Couleurs de remplacement pour un événement long dont la couleur est déjà prise par un événement simultané
-COULEURS_ALT = ["rose", "lavande", "turquoise", "kaki", "marine", "or_fonce", "orange", "vert", "or", "bleu"]
-TEINTE_PERIODE = "C00000"  # même rouge que les dimanches de l'Avent / du Carême
+# (uniquement des couleurs non attribuées à un type : voir la palette dans DECISIONS.md)
+COULEURS_ALT = ["rose", "or_fonce", "orange", "vert", "or", "bleu"]
+TEINTE_PERIODE = "7030A0"  # même violet que les dimanches de l'Avent / du Carême
 SEUIL_LONG = 4  # écart en jours (début→fin) à partir duquel un événement est « long » (5 jours et plus)
 GRIS_DIMANCHE = "D9D9D9"
 BLEU_VACANCES = "8EAADB"
@@ -320,7 +325,7 @@ def construire_xlsx(chemin: Path, annee: int, evts: list[Evt], vacances, rapport
     # ligne 2 : légende des fonds (périodes, vacances)
     legende = []
     if periodes:
-        legende.append("Fond rouge des jours : " + ", ".join(
+        legende.append("Fond violet des jours : " + ", ".join(
             f"{n} ({d1:%d/%m} → {d2:%d/%m})" for n, d1, d2 in periodes))
     if vacances:
         legende.append("Bande bleue : vacances scolaires zone B")

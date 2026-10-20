@@ -170,7 +170,7 @@ def test_periode_teinte(tmp_path):
     ws = load_workbook(out).active
     r = 4 + 3 * 29  # 30/11 : colonne des jours de novembre = 9/10
     assert ws.cell(r, 9).fill.fgColor.rgb.endswith(g.TEINTE_PERIODE)
-    assert ws.cell(4 + 3 * 28, 9).fill.fgColor.rgb.endswith(g.TEINTE_PERIODE)  # le dimanche 29/11 est rouge aussi
+    assert ws.cell(4 + 3 * 28, 9).fill.fgColor.rgb.endswith(g.TEINTE_PERIODE)  # le dimanche 29/11 est violet aussi
 
 
 def test_evenement_traversant_cede_ses_lignes(tmp_path):
